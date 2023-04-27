@@ -17,6 +17,7 @@ import com.kj.clinic.security.dto.LoginResponse;
 import com.kj.clinic.security.dto.SignUpRequest;
 import com.kj.clinic.security.dto.SignUpRequestNoLogin;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
