@@ -16,5 +16,5 @@ public class SignUpRequestNoLogin {
     private String username;
     private String password;
 
-    private List<String> roles = Collections.singletonList("ROLE_USER");
+    private final List<String> roles = Collections.singletonList("ROLE_USER");
 }

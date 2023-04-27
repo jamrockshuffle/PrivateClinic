@@ -9,7 +9,6 @@ import com.kj.clinic.security.model.User;
 import com.kj.clinic.security.repository.RoleRepository;
 import com.kj.clinic.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
