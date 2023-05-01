@@ -11,32 +11,36 @@
 package com.kj.clinic.security.controller.rest;
 
 import com.kj.clinic.security.AuthService;
-import com.kj.clinic.security.controller.jwtService.JwtHandler;
 import com.kj.clinic.security.dto.LoginRequest;
 import com.kj.clinic.security.dto.LoginResponse;
 import com.kj.clinic.security.dto.SignUpRequest;
 import com.kj.clinic.security.dto.SignUpRequestNoLogin;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.SessionScope;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/auth")
+//@Scope("session")
+@SessionScope
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService service;
-    private final JwtHandler jwtHandler;
 
     @PostMapping("/token")
-    public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<?> authenticate(@Valid @RequestBody LoginRequest request, HttpServletResponse response) {
         LoginResponse loginResponse = service.authenticateRequest(request);
-        jwtHandler.create(loginResponse.getJwt());
-        return ResponseEntity.ok(loginResponse);
 
+        response.addHeader("Authorization", "Bearer " + loginResponse.getJwt());
+
+        return ResponseEntity.ok(loginResponse);
     }
 
     //spring set global variable in controller

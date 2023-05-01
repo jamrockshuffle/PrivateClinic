@@ -11,20 +11,34 @@
     <fieldset style=" margin-left: auto; margin-right: auto">
 
 
-        <legend style="text-align: center;">Add User</legend>
+        <legend style="text-align: center;">Login</legend>
         <hr>
 
-        <form name="signup" action="" method="post">
+        <form name="login" action="" method="post">
             Username:<@spring.formInput "request.username" "" "text"/>
             <br>
             <br>
             Password:<@spring.formInput "request.password" "" "text"/>
             <br>
             <br>
-            <input type="submit" value="Create"/>
+            <input type="submit" value="Create" id="create"/>
         </form>
     </fieldset>
 </div>
+
+<#--<script>
+
+    window.localStorage.setItem('token', JSON.stringify(${response.jwt}));
+
+</script>-->
+
+<#--
+<script>
+
+    window.sessionStorage.authToken = '${jwt}'
+
+</script>
+-->
 
 </body>
 </html>

@@ -47,7 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/auth/signupnew",
                 "/",
                 "/signup",
-                "/assets/{fileName}").permitAll()
+                "/assets/{fileName}",
+                "/login",
+                "/process").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
