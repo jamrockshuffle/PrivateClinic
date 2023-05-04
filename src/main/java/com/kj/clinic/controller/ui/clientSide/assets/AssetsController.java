@@ -8,10 +8,9 @@
  *
  */
 
-package com.kj.clinic.controller.ui.assets;
+package com.kj.clinic.controller.ui.clientSide.assets;
 
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 
 @Controller

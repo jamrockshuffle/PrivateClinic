@@ -4,15 +4,18 @@ import com.kj.clinic.security.JwtUtils;
 import com.kj.clinic.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.util.WebUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -46,10 +49,16 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String getToken(HttpServletRequest request) {
+    /*private String getToken(HttpServletRequest request) {
         var authHeader = request.getHeader("Authorization");
         return StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")
                 ? authHeader.substring(7)
                 : null;
+    }*/
+
+    public String getToken(HttpServletRequest request) {
+        Cookie cookie = WebUtils.getCookie(request, "tkn");
+        if (cookie != null) return cookie.getValue();
+        return null;
     }
 }

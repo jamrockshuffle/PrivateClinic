@@ -64,8 +64,7 @@ public class PatientsDAOImpl implements IPatientsDAO{
             default -> obj.setCategory("I");
         }
 
-        // USERNAME DO AFTER SECURITY
-        obj.setUsername(" ");
+        obj.setUsername(obj.getUsername());
 
         repository.save(obj);
         return obj;
@@ -90,8 +89,7 @@ public class PatientsDAOImpl implements IPatientsDAO{
             default -> obj.setCategory("I");
         }
 
-        // USERNAME DO AFTER SECURITY
-        obj.setUsername(" ");
+        obj.setUsername(obj.getUsername());
 
         repository.save(obj);
         return obj;

@@ -36,56 +36,107 @@ public class AuthUIController {
 
     private final AuthService service;
 
-    @GetMapping("/signup")
-    public String createAccount(Model model){
+    @GetMapping("/signUp")
+    public String createAccount(Model model,
+                                SecurityContextHolderAwareRequestWrapper requestWrapper){
 
-        SignUpRequestNoLogin request = new SignUpRequestNoLogin();
-        request.setUsername("");
-        request.setPassword("");
+        if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/";
+        } else {
+            SignUpRequestNoLogin request = new SignUpRequestNoLogin();
+            request.setUsername("");
+            request.setPassword("");
 
-        model.addAttribute("request", request);
+            model.addAttribute("request", request);
 
-
-        return "signUpFront";
+            return "account/signUpFront";
+        }
     }
 
-    @PostMapping("/signup")
-    public String createAccount(Model model, @ModelAttribute("request") SignUpRequestNoLogin request){
+    @PostMapping("/signUp")
+    public String createAccount(Model model,
+                                @ModelAttribute("request") SignUpRequestNoLogin request,
+                                HttpServletResponse servletResponse){
 
         ResponseEntity.ok(service.signUpUserNoLogin(request));
+
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsername(request.getUsername());
+        loginRequest.setPassword(request.getPassword());
+
+        LoginResponse response = service.authenticateRequest(loginRequest);
+
+        //secure
+        // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
+
+        Cookie cookie = new Cookie("tkn", response.getJwt());
+
+        servletResponse.addCookie(cookie);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/logIn")
+    public String logIn(Model model,
+                        SecurityContextHolderAwareRequestWrapper requestWrapper){
+
+        if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
+            return "redirect:/";
+        } else {
+            LoginRequest request = new LoginRequest();
+            request.setUsername("");
+            request.setPassword("");
+
+            model.addAttribute("request", request);
+
+            return "account/log-in";
+        }
+    }
+
+    @PostMapping("/logIn")
+    public String logIn(Model model,
+                          @ModelAttribute("request") LoginRequest request,
+                        HttpServletResponse servletResponse){
+
+            LoginResponse response = service.authenticateRequest(request);
+            ResponseEntity.ok(response);
+
+            //secure
+            // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
+
+            Cookie cookie = new Cookie("tkn", response.getJwt());
+
+            servletResponse.addCookie(cookie);
+
+            return "redirect:/";
+    }
+
+    @GetMapping("/logOut")
+    public String logOut(Model model,
+                         HttpServletResponse response,
+                         HttpServletRequest request){
+
+        Cookie cookie = new Cookie("tkn", null);
+        cookie.setMaxAge(0);
+
+        response.addCookie(cookie);
 
         return "redirect:/";
     }
 
     @GetMapping("/login")
-    public String logIn(Model model){
+    public String login(){
 
-        LoginRequest request = new LoginRequest();
-        request.setUsername("");
-        request.setPassword("");
+        return "redirect:/logIn";
+    }
 
-        model.addAttribute("request", request);
+    @GetMapping("/logout")
+    public String logout(){
 
-        return "logInFront";
+        return "redirect:/logOut";
     }
 
     /*@PostMapping("/login")
-    public String logIn(Model model,
-                          @ModelAttribute("request") LoginRequest request){
-
-        LoginResponse response = service.authenticateRequest(request);
-
-        ResponseEntity.ok(response);
-
-        model.addAttribute("response", response);
-
-        *//*redirectAttributes.addFlashAttribute("loginResponse", response);*//*
-
-        *//*        return "forward:/";*//*
-        return "redirect:/";
-    }*/
-
-    @PostMapping("/login")
     public String logIn(Model model,
                         @ModelAttribute("request") LoginRequest request,
                         final RedirectAttributes redirectAttributes){
@@ -106,14 +157,11 @@ public class AuthUIController {
                           final RedirectAttributes redirectAttributes,
                           HttpServletResponse servletResponse){
 
-        /*Cookie cookie = new Cookie("name", response.getJwt());
+        Cookie cookie = new Cookie("tkn", response.getJwt());
 
-        cookie.setSecure(true);
-        cookie.setMaxAge(3600000);
+        servletResponse.addCookie(cookie);
 
-        servletResponse.addCookie(cookie);*/
-
-        servletResponse.addHeader("Set-Cookie", "name=Bearer " + response.getJwt() + ";");
+        //servletResponse.addHeader("Set-Cookie", "tkn=" + response.getJwt() + ";");
         // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
         return "process";
@@ -125,6 +173,6 @@ public class AuthUIController {
                           HttpServletResponse servletResponse){
 
         return "redirect:/";
-    }
+    }*/
 
 }

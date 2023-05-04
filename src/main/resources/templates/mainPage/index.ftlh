@@ -11,7 +11,7 @@
     <#include "../a-assets/styles/common-styles.ftlh">
     <#include "../a-assets/styles/bootstrap5.ftlh">
     <#include "../a-assets/styles/bootstrap.ftlh">
-    <#include "../a-assets/styles/mainPage/index-style.ftlh">
+    <#include "styles/index-styles.ftlh">
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
            rel="stylesheet"
@@ -33,8 +33,8 @@
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
 
-            <a class="navbar-brand name-font" href="#"><img class="rounded-lg-3" src="/assets/logo-cropped.png" alt="" width="50px" height="50px"></a>
-            <a class="navbar-brand name-font" href="#">SOLUS SOLUTIONS</a>
+            <a class="navbar-brand name-font" href="/"><img class="rounded-lg-3" src="/assets/logo-cropped.png" alt="" width="50px" height="50px"></a>
+            <a class="navbar-brand name-font" href="/">SOLUS SOLUTIONS</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,17 +42,17 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Про нас</a>
+                        <a class="nav-link dropdown-toggle" href="/about-us" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Про нас</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdownItemCustom" href="#">Фахівці</a>
-                            <a class="dropdownItemCustom" href="#">Послуги</a>
+                            <a class="dropdownItemCustom" href="/doctors">Фахівці</a>
+                            <a class="dropdownItemCustom" href="/about-us#we-offer">Послуги</a>
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Ціни <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/prices">Ціни <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Напрямки</a>
+                        <a class="nav-link dropdown-toggle" href="/services" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Напрямки</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
                             <a class="dropdownItemCustom" href="#">Вакцинація</a>
                             <a class="dropdownItemCustom" href="#">МРТ</a>
@@ -62,11 +62,11 @@
                             <a class="dropdownItemCustom" href="#">Стоматологія</a>
                             <a class="dropdownItemCustom" href="#">Кардіологія</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdownItemCustom btn-light" href="#">Більше &raquo;</a>
+                            <a class="dropdownItemCustom btn-light" href="/services">Більше &raquo;</a>
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Контакти <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/contact-us">Контакти <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
@@ -74,7 +74,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <button class="btn dangerCustom my-2 my-sm-2" type="submit">Онлайн-запис</button>
                     &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-info my-2 my-sm-0 btn-lg" type="submit">Увійти</button>
+                    <a href="/logIn" class="btn btn-info my-2 my-sm-0 btn-lg">Увійти</a>
                 </form>
             </div>
         </nav>
@@ -82,63 +82,6 @@
         <main role="main">
 
             <div class="jumbotronCustom">
-                <!--<div class="containerCustomFlex">
-                    <div class="logoContainer"></div>
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <h1 class="displayCustom name-font" >ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>
-
-                <div class="container">
-                    <div class="logoContainer"></div>
-                    <h1 class="displayCustom name-font" >ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>
-
-                <div class="container">
-                    <div class="logoContainer" style="margin: auto; width: 300px; height: 300px"></div>
-                </div>
-
-                <div class="container">
-                    <div class="logoContainer" style="margin: auto"></div>
-                    <h1 class="displayCustom name-font" align="center">ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>
-                -->
-
-                <!--<div class="containerCustomFlex">
-                    <div class="logoContainerCropped"></div>
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    <h1 class="displayCustom name-font" >ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>
-
-                <div class="container">
-                    <div class="logoContainerCropped"></div>
-                    <h1 class="displayCustom name-font" >ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>-->
-
-                <!--<div class="container">
-                    <div class="logoContainerCropped" style="margin: auto"></div>
-                    <h1 class="displayCustom name-font" align="center">ПРИВАТНА КЛІНІКА №1 У ЧЕРНІВЦЯХ</h1>
-                </div>
-
-                <br>
-                <hr style="height:2.1px;border-width:0;background-color:white">
-                <br>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h2 align="center"><img src="../a-assets/24%207%20help.png" height="260px" width="260px"></h2>
-                            <h4 align="center">ДОПОМОГА <span class="name-font">24/7</span></h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h2 align="center"><img src="../a-assets/stetoscope.png" height="260px" width="260px"></h2>
-                            <h4 align="center">КВАЛІФІКОВАНІ ФАХІВЦІ</h4>
-                        </div>
-                        <div class="col-md-4">
-                            <h2 align="center"><img src="../a-assets/fast%20service.png" height="260px" width="260px"></h2>
-                            <h4 align="center">ШВИДКЕ ОБСЛУГОВУВАННЯ</h4>
-                        </div>
-                    </div>
-                </div>-->
 
                 <div class="containerCarousel">
 
@@ -157,7 +100,7 @@
                                     <div class="carousel-caption text-start ">
                                         <h1>Solus Solutions - приватна клініка №1 у Чернівцях</h1>
                                         <p class="text-muted-custom">Дізнайтеся, що пропонує наша клініка</p>
-                                        <p><a href="#" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
+                                        <p><a href="/about-us" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
                                     </div>
                                 </div>
 
@@ -169,7 +112,7 @@
                                     <div class="carousel-caption text-start">
                                         <h1>Напрямки</h1>
                                         <p class="text-muted-custom">Куди можна записатися?</p>
-                                        <p><a href="#" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
+                                        <p><a href="/services" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +123,7 @@
                                     <div class="carousel-caption text-start">
                                         <h1>Фахівці</h1>
                                         <p class="text-muted-custom">Лікарі, які можуть вам допомогти</p>
-                                        <p><a href="#" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
+                                        <p><a href="/doctors" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +135,7 @@
                                     <div class="carousel-caption text-start">
                                         <h1>Ціни</h1>
                                         <p class="text-muted-custom">Вартість за кожну послугу</p>
-                                        <p><a href="#" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
+                                        <p><a href="/prices" class="btn dangerCustom btn-lg">Більше &raquo;</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -208,24 +151,6 @@
                     </div>
                 </div>
 
-                <!--<div style="margin-left: 130px;"> &lt;!&ndash;class="px-4 py-5"&ndash;&gt;
-                    <div class="containerHeader my-5">
-                        <div class="row  align-items-center ">
-                            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                                <h1 class="display-4 fw-bold lh-1">Якість, гарантія, [...]</h1>
-                                <p class="lead text-muted-custom">Заснована у 2015 у Чернівцях,
-                                    Solus Solutions швидко стала провідною по всій області. Ми пропонуємо широкий спектр послуг,
-                                    низькі ціни та досвідчених фахівців, які вам допоможуть. Solus Solutions - це вибір №1 у сфері медичного
-                                    обслуговування.</p>
-                            </div>
-                            <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden ">
-                                <img class="rounded-lg-3" src="../a-assets/SOLUS%20SOLUTIONS.png" alt="" width="250px" height="250px">
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-
             </div>
 
             <div class="container px-4 py-5">
@@ -236,7 +161,7 @@
                     <div class="d-flex flex-column align-items-start gap-2">
                         <h3 class="fw-bold">Наші переваги</h3>
                         <p class="text-muted">Чому ви маєте обрати саме нас? </p>
-                        <a href="#" class="btn btn-info btn-lg">Більше &raquo;</a>
+<#--                        <a href="#" class="btn btn-info btn-lg">Більше &raquo;</a>-->
                     </div>
                     <div class="row row-cols-1 row-cols-sm-2 g-4">
                         <div class="d-flex flex-column gap-2">

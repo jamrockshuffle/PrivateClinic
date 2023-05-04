@@ -1,3 +1,14 @@
+
+/*
+ * *
+ *  * Created by IntelliJ IDEA.
+ *  *
+ *  * @Author: Mykola Bidiuk
+ *  * @Date: 02.05.23, 12:54
+ *  * @Version: IndexUIController: 1.0
+ *
+ */
+
 /*
  * *
  *  * Created by IntelliJ IDEA.
@@ -8,7 +19,7 @@
  *
  */
 
-package com.kj.clinic.controller.ui;
+package com.kj.clinic.controller.ui.clientSide;
 
 import com.kj.clinic.security.AuthService;
 import com.kj.clinic.security.controller.rest.AuthController;
@@ -23,10 +34,7 @@ import org.springframework.security.web.servletapi.SecurityContextHolderAwareReq
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,24 +43,15 @@ import java.util.List;
 @Controller
 public class IndexUIController {
 
-    /*private String getToken(HttpServletRequest request) {
-        var authHeader = request.getHeader("Authorization");
-        return StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")
-                ? authHeader.substring(7)
-                : null;
-    }*/
-
-
     @RequestMapping("/")
-    public String displayMainPage(SecurityContextHolderAwareRequestWrapper requestWrapper,
-                                  HttpServletRequest servlet,
-                                  HttpServletResponse response
-                                  /*@ModelAttribute("loginResponse")LoginResponse loginResponse*/){
+    public String display(Model model,
+                                  SecurityContextHolderAwareRequestWrapper requestWrapper){
 
-        if (requestWrapper.isUserInRole("ROLE_USER")) {
-            return "mainPage/index";
-        } else {
+        if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("username", requestWrapper.getUserPrincipal().getName());
             return "mainPage/index-logged";
+        } else {
+            return "mainPage/index";
         }
     }
 }

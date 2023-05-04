@@ -43,13 +43,6 @@ public class AuthController {
         return ResponseEntity.ok(loginResponse);
     }
 
-    //spring set global variable in controller
-
-    /*@GetMapping("/test")
-    public String test(){
-        return jwt;
-    }*/
-
     @PostMapping("/user")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createUser(@Valid @RequestBody SignUpRequest request) {

@@ -6,6 +6,7 @@ import com.kj.clinic.security.filter.AuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,6 +16,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.util.WebUtils;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 @EnableWebSecurity
 @Configuration
@@ -49,7 +54,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/signup",
                 "/assets/{fileName}",
                 "/login",
-                "/process").permitAll()
+                "/process",
+                "/about-us",
+                "/about-us#we-provide",
+                "/contact-us",
+                "/doctors",
+                "/prices",
+                "/services",
+                "/logIn").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);

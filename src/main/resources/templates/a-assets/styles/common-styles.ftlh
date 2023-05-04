@@ -40,19 +40,19 @@
     }
 
     .logoContainer{
-        content: url("templates/a-assets/SOLUS SOLUTIONS.png");
+        content: url("/assets/SOLUS SOLUTIONS.png");
         width: 220px;
         height: 220px;
     }
 
     .logoContainerCropped{
-        content: url("templates/a-assets/logo-cropped.png");
+        content: url("/assets/logo-cropped.png");
         width: 200px;
         height: 200px;
     }
 
     .footerLogoContainer{
-        content: url("templates/a-assets/SOLUS SOLUTIONS.png");
+        content: url("/assets/SOLUS SOLUTIONS.png");
         width: 200px;
         height: 200px;
     }
@@ -204,14 +204,15 @@
         background-color: transparent;
     }
 
-
     @media screen and (min-width: 992px) {
         .dropdown:hover .dropdown-menu {
             display: block;
             margin-top: 0;
+            transition: .1s;
         }
         .dropdown .dropdown-menu {
             display: none;
+            transition: .1s;
         }
         .dropdown:hover .dropdown-toggle::after {
             border-top: 0;
@@ -223,6 +224,7 @@
         .dropdown-toggle.show::after {
             border-top: 0;
             border-bottom: 0.3em solid;
+            transition: .1s;
         }
     }
 
