@@ -10,6 +10,7 @@
 
 package com.kj.clinic.services.dao.patients;
 
+import com.kj.clinic.model.Illnesses;
 import com.kj.clinic.model.Patients;
 import com.kj.clinic.model.Personnel;
 import com.kj.clinic.repository.IllnessesRepo;
@@ -68,7 +69,7 @@ public class PatientsDAOImpl implements IPatientsDAO{
             default -> obj.setCategory("I");
         }
 
-        obj.setUsername(obj.getUsername());
+        obj.setUsername(dtoObj.getUsername());
 
         repository.save(obj);
         return obj;
@@ -88,14 +89,54 @@ public class PatientsDAOImpl implements IPatientsDAO{
         obj.setIllnesses(illnessesRepo.findById(dtoObj.getIllnesses()).get());
 
         switch (illnessesRepo.findById(dtoObj.getIllnesses()).get().getName()) {
+            case "Хронічні" -> obj.setCategory("II");
+            case "Інвалідність" -> obj.setCategory("III");
+            default -> obj.setCategory("I");
+        }
+
+        obj.setUsername(dtoObj.getUsername());
+
+        repository.save(obj);
+        return obj;
+    }
+
+    @Override
+    public Patients createUI(PatientsDTOCreate dtoObj) {
+        String id = String.valueOf(this.findAll()
+                .stream()
+                .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
+
+        Patients obj = new Patients();
+        obj.setId(id);
+        obj.setName(dtoObj.getName());
+        obj.setBirthday(LocalDate.parse(dtoObj.getBirthday()));
+        obj.setPhone(dtoObj.getPhone());
+        obj.setEmail(dtoObj.getEmail());
+
+        if (dtoObj.getIllnesses().equals("...")) {
+            obj.setIllnesses(this.getByIllness("Немає"));
+        } else {
+            obj.setIllnesses(this.getByIllness(dtoObj.getIllnesses()));
+        }
+
+        switch (dtoObj.getIllnesses()) {
             case "Chronic" -> obj.setCategory("II");
             case "Disability" -> obj.setCategory("III");
             default -> obj.setCategory("I");
         }
 
-        obj.setUsername(obj.getUsername());
+        obj.setUsername(dtoObj.getUsername());
 
         repository.save(obj);
         return obj;
+    }
+
+    public Illnesses getByIllness(String illness) {
+
+        return illnessesRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(illness))
+                .findFirst()
+                .orElse(null);
     }
 }

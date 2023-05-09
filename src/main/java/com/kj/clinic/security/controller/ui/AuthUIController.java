@@ -10,11 +10,17 @@
 
 package com.kj.clinic.security.controller.ui;
 
+import com.kj.clinic.model.Illnesses;
+import com.kj.clinic.model.Patients;
+import com.kj.clinic.repository.IllnessesRepo;
 import com.kj.clinic.security.AuthService;
 import com.kj.clinic.security.dto.LoginRequest;
 import com.kj.clinic.security.dto.LoginResponse;
 import com.kj.clinic.security.dto.SignUpRequest;
 import com.kj.clinic.security.dto.SignUpRequestNoLogin;
+import com.kj.clinic.services.dto.SignUpForm;
+import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
+import com.kj.clinic.services.service.patients.PatientsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,13 +34,18 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 public class AuthUIController {
 
     private final AuthService service;
+    private final IllnessesRepo illnessesRepo;
+    private final PatientsServiceImpl patientsService;
 
     @GetMapping("/signUp")
     public String createAccount(Model model,
@@ -43,22 +54,51 @@ public class AuthUIController {
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/";
         } else {
-            SignUpRequestNoLogin request = new SignUpRequestNoLogin();
+
+            SignUpForm request = new SignUpForm();
+            request.setFirstName("");
+            request.setLastName("");
+            request.setBirthday("");
+            request.setPhone("");
+            request.setEmail("");
+            request.setIllnesses("");
             request.setUsername("");
             request.setPassword("");
 
             model.addAttribute("request", request);
 
-            return "account/signUpFront";
+            List<String> illnesses = illnessesRepo.findAll()
+                    .stream()
+                    .map(Illnesses::getName)
+                    .collect(Collectors.toList());
+
+            model.addAttribute("illnesses", illnesses);
+
+            return "account/signUp/sign-up";
         }
     }
 
     @PostMapping("/signUp")
     public String createAccount(Model model,
-                                @ModelAttribute("request") SignUpRequestNoLogin request,
+                                @ModelAttribute("request") SignUpForm request,
                                 HttpServletResponse servletResponse){
 
-        ResponseEntity.ok(service.signUpUserNoLogin(request));
+        PatientsDTOCreate patients = new PatientsDTOCreate();
+        patients.setName(request.getFirstName() + " " + request.getLastName());
+        patients.setBirthday(request.getBirthday());
+        patients.setPhone(request.getPhone());
+        patients.setEmail(request.getEmail());
+        patients.setIllnesses(request.getIllnesses());
+        patients.setUsername(request.getUsername());
+
+        System.out.println(request.getUsername());
+
+        patientsService.createUI(patients);
+
+        SignUpRequestNoLogin requestNoLogin = new SignUpRequestNoLogin();
+        requestNoLogin.setUsername(request.getUsername());
+        requestNoLogin.setPassword(request.getPassword());
+        ResponseEntity.ok(service.signUpUserNoLogin(requestNoLogin));
 
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setUsername(request.getUsername());
@@ -89,7 +129,7 @@ public class AuthUIController {
 
             model.addAttribute("request", request);
 
-            return "account/log-in";
+            return "account/logIn/log-in";
         }
     }
 

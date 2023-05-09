@@ -49,16 +49,15 @@ public class AuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    /*private String getToken(HttpServletRequest request) {
-        var authHeader = request.getHeader("Authorization");
-        return StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")
-                ? authHeader.substring(7)
-                : null;
-    }*/
-
     public String getToken(HttpServletRequest request) {
         Cookie cookie = WebUtils.getCookie(request, "tkn");
-        if (cookie != null) return cookie.getValue();
-        return null;
+        if (cookie != null) {
+            return cookie.getValue();
+        } else {
+            var authHeader = request.getHeader("Authorization");
+            return StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")
+                    ? authHeader.substring(7)
+                    : null;
+        }
     }
 }

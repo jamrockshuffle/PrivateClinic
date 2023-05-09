@@ -19,11 +19,13 @@ import com.kj.clinic.services.dto.personnelCategory.PersonnelCategoryDTOUpdate;
 import com.kj.clinic.services.service.personnel.PersonnelServiceImpl;
 import com.kj.clinic.services.service.personnelCategory.PersonnelCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/personnel")
 public class PersonnelController {
 

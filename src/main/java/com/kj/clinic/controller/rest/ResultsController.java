@@ -15,11 +15,13 @@ import com.kj.clinic.services.dto.results.ResultsDTOCreate;
 import com.kj.clinic.services.dto.results.ResultsDTOUpdate;
 import com.kj.clinic.services.service.results.ResultsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/results")
 public class ResultsController {
 

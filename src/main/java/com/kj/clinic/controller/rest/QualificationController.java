@@ -15,11 +15,13 @@ import com.kj.clinic.services.dto.qualification.QualificationDTOCreate;
 import com.kj.clinic.services.dto.qualification.QualificationDTOUpdate;
 import com.kj.clinic.services.service.qualification.QualificationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/qualification")
 public class QualificationController {
 

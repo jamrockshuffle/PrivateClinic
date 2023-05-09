@@ -18,11 +18,13 @@ import com.kj.clinic.services.dto.illnesses.IllnessesDTOCreate;
 import com.kj.clinic.services.dto.illnesses.IllnessesDTOUpdate;
 import com.kj.clinic.services.service.illnesses.IllnessesServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/illnesses")
 public class IllnessesController {
 

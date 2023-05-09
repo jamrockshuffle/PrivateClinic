@@ -72,7 +72,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <button class="btn dangerCustom my-2 my-sm-2" type="submit">Онлайн-запис</button>
                     &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-info my-2 my-sm-0 btn-lg" type="submit">Увійти</button>
+                    <a href="/logIn" class="btn btn-info my-2 my-sm-0 btn-lg">Увійти</a>
                 </form>
             </div>
         </nav>

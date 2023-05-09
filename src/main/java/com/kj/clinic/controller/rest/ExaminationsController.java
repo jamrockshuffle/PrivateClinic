@@ -15,11 +15,13 @@ import com.kj.clinic.services.dto.examinations.ExaminationsDTOCreate;
 import com.kj.clinic.services.dto.examinations.ExaminationsDTOUpdate;
 import com.kj.clinic.services.service.examinations.ExaminationsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('ADMIN')")
 @RequestMapping("api/examinations")
 public class ExaminationsController {
 

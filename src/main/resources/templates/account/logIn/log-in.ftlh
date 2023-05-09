@@ -6,8 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Увійти в акаунт</title>
-    <#include "../a-assets/styles/bootstrap5.ftlh">
-    <#include "../a-assets/styles/bootstrap.ftlh">
+    <#include "../../a-assets/styles/bootstrap5.ftlh">
+    <#include "../../a-assets/styles/bootstrap.ftlh">
     <#include "styles/log-in-styles.ftlh">
 
 
@@ -29,6 +29,7 @@
     <form class="" name="login" action="" method="post">
         <img class="mb-4" src="/assets/logo-cropped.png" alt="" width="100px" height="100px">
         <h1 class="h3 mb-3 fw-normal body-font">Увійдіть в акаунт</h1>
+        <p class="fs-6 body-font">Немає акаунту? <a href="/signUp" class="fw-bold" style="color: #0f4696">Створити</a></p>
 
         <div class="form-floating">
             <input type="text" class="form-control" id="username" name="username" placeholder="login name" value="${request.username}">

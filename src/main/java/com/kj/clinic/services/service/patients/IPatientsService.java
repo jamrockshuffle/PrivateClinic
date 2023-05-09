@@ -21,5 +21,8 @@ public interface IPatientsService {
     Patients findById(String id);
     List<Patients> deleteById (String id);
     Patients create (PatientsDTOCreate dtoObj);
+    Patients createUI (PatientsDTOCreate dtoObj);
     Patients update (PatientsDTOUpdate dtoObj);
+
+
 }

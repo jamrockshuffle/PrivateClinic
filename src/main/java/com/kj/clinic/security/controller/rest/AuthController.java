@@ -28,7 +28,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/auth")
-//@Scope("session")
 @SessionScope
 @RequiredArgsConstructor
 public class AuthController {
@@ -49,7 +48,7 @@ public class AuthController {
         return ResponseEntity.ok(service.signUpUser(request));
     }
 
-    @PostMapping("/signupnew")
+    /*@PostMapping("/signupnew")
     public ResponseEntity<?> createUserNoLogin(@Valid @RequestBody SignUpRequestNoLogin request) {
        // return ResponseEntity.ok(service.signUpUserNoLogin(request));
 
@@ -60,6 +59,6 @@ public class AuthController {
         loginRequest.setPassword(request.getPassword());
 
         return ResponseEntity.ok(service.authenticateRequest(loginRequest));
-    }
+    }*/
 
 }

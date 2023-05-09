@@ -46,6 +46,11 @@ public class PatientsServiceImpl implements IPatientsService{
     }
 
     @Override
+    public Patients createUI(PatientsDTOCreate dtoObj) {
+        return dao.createUI(dtoObj);
+    }
+
+    @Override
     public Patients update(PatientsDTOUpdate dtoObj) {
         return dao.update(dtoObj);
     }
