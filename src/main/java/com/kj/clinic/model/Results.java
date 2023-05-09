@@ -22,16 +22,20 @@ public class Results {
     private String id;
 
     private Patients patient;
+    private String examinationId;
     private LocalDate examinationDate;
+    private QualificationPrices qualification;
     private String prescription;
 
     public Results() {
     }
 
-    public Results(String id, Patients patient, LocalDate examinationDate, String prescription) {
+    public Results(String id, Patients patient, String examinationId, LocalDate examinationDate, QualificationPrices qualification, String prescription) {
         this.id = id;
         this.patient = patient;
+        this.examinationId = examinationId;
         this.examinationDate = examinationDate;
+        this.qualification = qualification;
         this.prescription = prescription;
     }
 
@@ -67,12 +71,30 @@ public class Results {
         this.prescription = prescription;
     }
 
+    public String getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(String examinationId) {
+        this.examinationId = examinationId;
+    }
+
+    public QualificationPrices getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(QualificationPrices qualification) {
+        this.qualification = qualification;
+    }
+
     @Override
     public String toString() {
         return "Results{" +
                 "id='" + id + '\'' +
                 ", patient=" + patient +
+                ", examinationId='" + examinationId + '\'' +
                 ", examinationDate=" + examinationDate +
+                ", qualification=" + qualification +
                 ", prescription='" + prescription + '\'' +
                 '}';
     }

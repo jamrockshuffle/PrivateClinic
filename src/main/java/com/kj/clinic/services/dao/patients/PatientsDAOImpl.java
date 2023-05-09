@@ -12,6 +12,7 @@ package com.kj.clinic.services.dao.patients;
 
 import com.kj.clinic.model.Patients;
 import com.kj.clinic.model.Personnel;
+import com.kj.clinic.repository.IllnessesRepo;
 import com.kj.clinic.repository.PatientsRepo;
 import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
 import com.kj.clinic.services.dto.patients.PatientsDTOUpdate;
@@ -26,6 +27,9 @@ public class PatientsDAOImpl implements IPatientsDAO{
 
     @Autowired
     PatientsRepo repository;
+
+    @Autowired
+    IllnessesRepo illnessesRepo;
 
     @Override
     public List<Patients> findAll() {
@@ -56,9 +60,9 @@ public class PatientsDAOImpl implements IPatientsDAO{
         obj.setPhone(dtoObj.getPhone());
         obj.setEmail(dtoObj.getEmail());
 
-        obj.setIllnesses(dtoObj.getIllnesses());
+        obj.setIllnesses(illnessesRepo.findById(dtoObj.getIllnesses()).get());
 
-        switch (dtoObj.getIllnesses()) {
+        switch (illnessesRepo.findById(dtoObj.getIllnesses()).get().getName()) {
             case "Chronic" -> obj.setCategory("II");
             case "Disability" -> obj.setCategory("III");
             default -> obj.setCategory("I");
@@ -81,9 +85,9 @@ public class PatientsDAOImpl implements IPatientsDAO{
         obj.setPhone(dtoObj.getPhone());
         obj.setEmail(dtoObj.getEmail());
 
-        obj.setIllnesses(dtoObj.getIllnesses());
+        obj.setIllnesses(illnessesRepo.findById(dtoObj.getIllnesses()).get());
 
-        switch (dtoObj.getIllnesses()) {
+        switch (illnessesRepo.findById(dtoObj.getIllnesses()).get().getName()) {
             case "Chronic" -> obj.setCategory("II");
             case "Disability" -> obj.setCategory("III");
             default -> obj.setCategory("I");

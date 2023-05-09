@@ -29,27 +29,24 @@ import java.time.LocalDateTime;
 public class ExaminationsDTOUpdate {
 
     private String id;
+    private String examinationId;
     private String patient;
     private String doctor;
+    private String qualification;
     private String examinationTime;
     private String price;
 
     public ExaminationsDTOUpdate() {
     }
 
-    public ExaminationsDTOUpdate(String id, String patient, String doctor, String examinationTime, String price) {
+    public ExaminationsDTOUpdate(String id, String examinationId, String patient, String doctor, String qualification, String examinationTime, String price) {
         this.id = id;
+        this.examinationId = examinationId;
         this.patient = patient;
         this.doctor = doctor;
+        this.qualification = qualification;
         this.examinationTime = examinationTime;
         this.price = price;
-    }
-
-    public ExaminationsDTOUpdate(String id, String patient, String doctor, String examinationTime) {
-        this.id = id;
-        this.patient = patient;
-        this.doctor = doctor;
-        this.examinationTime = examinationTime;
     }
 
     public String getId() {
@@ -58,6 +55,14 @@ public class ExaminationsDTOUpdate {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(String examinationId) {
+        this.examinationId = examinationId;
     }
 
     public String getPatient() {
@@ -74,6 +79,14 @@ public class ExaminationsDTOUpdate {
 
     public void setDoctor(String doctor) {
         this.doctor = doctor;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 
     public String getExaminationTime() {

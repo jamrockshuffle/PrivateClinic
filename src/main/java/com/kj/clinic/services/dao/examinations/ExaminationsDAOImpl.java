@@ -23,6 +23,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ExaminationsDAOImpl implements IExaminationsDAO{
@@ -35,6 +36,9 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
 
     @Autowired
     PersonnelRepo personnelRepo;
+
+    @Autowired
+    QualificationPricesRepo qualificationPricesRepo;
 
     @Override
     public List<Examinations> findAll() {
@@ -60,8 +64,13 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
 
         Examinations obj = new Examinations();
         obj.setId(id);
+
+        UUID examId = UUID.randomUUID();
+        obj.setExaminationId(examId.toString());
+
         obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
         obj.setDoctor(personnelRepo.findById(dtoObj.getDoctor()).get());
+        obj.setQualification(qualificationPricesRepo.findById(dtoObj.getQualification()).get());
         obj.setExaminationTime(LocalDateTime.parse(dtoObj.getExaminationTime()));
 
         BigDecimal patientDiscount;
@@ -79,9 +88,9 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
             default -> doctorPrice = BigDecimal.valueOf(1);
         }
 
-        //BigDecimal price = 2500 * patientDicount * doctorPrice;
-
-        BigDecimal finalPrice = new BigDecimal(2500).multiply(patientDiscount).multiply(doctorPrice);
+        BigDecimal finalPrice = qualificationPricesRepo.findById(dtoObj.getQualification()).get().getPrice()
+                .multiply(patientDiscount)
+                .multiply(doctorPrice);
 
         obj.setPrice(finalPrice);
 
@@ -95,8 +104,11 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
 
         obj.setId(examinationsRepo.findById(dtoObj.getId()).get().getId());
 
+        obj.setExaminationId(dtoObj.getExaminationId());
+
         obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
         obj.setDoctor(personnelRepo.findById(dtoObj.getDoctor()).get());
+        obj.setQualification(qualificationPricesRepo.findById(dtoObj.getQualification()).get());
         obj.setExaminationTime(LocalDateTime.parse(dtoObj.getExaminationTime()));
 
         BigDecimal patientDiscount;
@@ -114,9 +126,9 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
             default -> doctorPrice = BigDecimal.valueOf(1);
         }
 
-        //BigDecimal price = 2500 * patientDicount * doctorPrice;
-
-        BigDecimal finalPrice = new BigDecimal(2500).multiply(patientDiscount).multiply(doctorPrice);
+        BigDecimal finalPrice = qualificationPricesRepo.findById(dtoObj.getQualification()).get().getPrice()
+                .multiply(patientDiscount)
+                .multiply(doctorPrice);
 
         obj.setPrice(finalPrice);
 

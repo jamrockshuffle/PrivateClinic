@@ -10,7 +10,9 @@
 
 package com.kj.clinic.services.dao.results;
 
+import com.kj.clinic.model.Examinations;
 import com.kj.clinic.model.Results;
+import com.kj.clinic.repository.ExaminationsRepo;
 import com.kj.clinic.repository.PatientsRepo;
 import com.kj.clinic.repository.ResultsRepo;
 import com.kj.clinic.services.dto.results.ResultsDTOCreate;
@@ -30,6 +32,18 @@ public class ResultsDAOImpl implements IResultsDAO{
 
     @Autowired
     PatientsRepo patientsRepo;
+
+    @Autowired
+    ExaminationsRepo examinationsRepo;
+
+    public Examinations getExaminationByID(String examinationId) {
+
+        return examinationsRepo.findAll().stream()
+                .filter(item -> item.getExaminationId()
+                        .equals(examinationId))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Override
     public List<Results> findAll() {
@@ -54,10 +68,14 @@ public class ResultsDAOImpl implements IResultsDAO{
                 .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
 
         Results obj = new Results();
-
         obj.setId(id);
+
+        obj.setExaminationId(dtoObj.getExaminationId());
         obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
         obj.setExaminationDate(LocalDate.parse(dtoObj.getExaminationDate()));
+
+        obj.setQualification(this.getExaminationByID(dtoObj.getExaminationId()).getQualification());
+
         obj.setPrescription(dtoObj.getPrescription());
 
         resultsRepo.save(obj);
@@ -71,12 +89,17 @@ public class ResultsDAOImpl implements IResultsDAO{
         Results obj = new Results();
         obj.setId(resultsRepo.findById(dtoObj.getId()).get().getId());
 
+        obj.setExaminationId(dtoObj.getExaminationId());
         obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
         obj.setExaminationDate(LocalDate.parse(dtoObj.getExaminationDate()));
+
+        obj.setQualification(this.getExaminationByID(dtoObj.getExaminationId()).getQualification());
+
         obj.setPrescription(dtoObj.getPrescription());
 
         resultsRepo.save(obj);
 
         return obj;
     }
+
 }

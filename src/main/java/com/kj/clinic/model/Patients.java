@@ -25,14 +25,14 @@ public class Patients {
     private LocalDate birthday;
     private String phone;
     private String email;
-    private String illnesses;
+    private Illnesses illnesses;
     private String category;
     private String username;
 
     public Patients() {
     }
 
-    public Patients(String id, String name, LocalDate birthday, String phone, String email, String illnesses, String category, String username) {
+    public Patients(String id, String name, LocalDate birthday, String phone, String email, Illnesses illnesses, String category, String username) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
@@ -83,11 +83,11 @@ public class Patients {
         this.email = email;
     }
 
-    public String getIllnesses() {
+    public Illnesses getIllnesses() {
         return illnesses;
     }
 
-    public void setIllnesses(String illnesses) {
+    public void setIllnesses(Illnesses illnesses) {
         this.illnesses = illnesses;
     }
 

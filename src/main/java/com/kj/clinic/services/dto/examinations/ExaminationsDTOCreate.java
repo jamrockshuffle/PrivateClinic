@@ -28,25 +28,31 @@ import java.time.LocalDateTime;
 
 public class ExaminationsDTOCreate {
 
+    private String examinationId;
     private String patient;
     private String doctor;
+    private String qualification;
     private String examinationTime;
     private String price;
 
     public ExaminationsDTOCreate() {
     }
 
-    public ExaminationsDTOCreate(String patient, String doctor, String examinationTime, String price) {
+    public ExaminationsDTOCreate(String examinationId, String patient, String doctor, String qualification, String examinationTime, String price) {
+        this.examinationId = examinationId;
         this.patient = patient;
         this.doctor = doctor;
+        this.qualification = qualification;
         this.examinationTime = examinationTime;
         this.price = price;
     }
 
-    public ExaminationsDTOCreate(String patient, String doctor, String examinationTime) {
-        this.patient = patient;
-        this.doctor = doctor;
-        this.examinationTime = examinationTime;
+    public String getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(String examinationId) {
+        this.examinationId = examinationId;
     }
 
     public String getPatient() {
@@ -65,6 +71,14 @@ public class ExaminationsDTOCreate {
         this.doctor = doctor;
     }
 
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
     public String getExaminationTime() {
         return examinationTime;
     }
@@ -80,4 +94,5 @@ public class ExaminationsDTOCreate {
     public void setPrice(String price) {
         this.price = price;
     }
+
 }

@@ -42,10 +42,9 @@
         </div>
 
         <button class="w-100 btn btn-lg dangerCustom" type="submit" id="login">Увійти</button>
-        <p class="mt-5 mb-3 body-font">&copy; 2015–2023</p>
+            <p class="mt-3 mb-3 body-font">&copy; 2015–2023 Solus Solutions</p>
     </form>
 </main>
-
 
 
 </body>

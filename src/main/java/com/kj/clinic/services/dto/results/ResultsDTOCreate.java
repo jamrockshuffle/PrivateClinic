@@ -23,15 +23,20 @@ package com.kj.clinic.services.dto.results;
 public class ResultsDTOCreate {
 
     private String patient;
+    private String examinationId;
     private String examinationDate;
+    private String qualification;
     private String prescription;
+
 
     public ResultsDTOCreate() {
     }
 
-    public ResultsDTOCreate(String patient, String examinationDate, String prescription) {
+    public ResultsDTOCreate(String patient, String examinationId, String examinationDate, String qualification, String prescription) {
         this.patient = patient;
+        this.examinationId = examinationId;
         this.examinationDate = examinationDate;
+        this.qualification = qualification;
         this.prescription = prescription;
     }
 
@@ -58,4 +63,21 @@ public class ResultsDTOCreate {
     public void setPrescription(String prescription) {
         this.prescription = prescription;
     }
+
+    public String getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(String examinationId) {
+        this.examinationId = examinationId;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
 }
+

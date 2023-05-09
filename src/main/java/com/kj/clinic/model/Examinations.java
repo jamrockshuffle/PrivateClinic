@@ -22,18 +22,23 @@ public class Examinations {
     @Id
     private String id;
 
+    private String examinationId;
+
     private Patients patient;
     private Personnel doctor;
+    private QualificationPrices qualification;
     private LocalDateTime examinationTime;
     private BigDecimal price;
 
     public Examinations() {
     }
 
-    public Examinations(String id, Patients patient, Personnel doctor, LocalDateTime examinationTime, BigDecimal price) {
+    public Examinations(String id, String examinationId, Patients patient, Personnel doctor, QualificationPrices qualification, LocalDateTime examinationTime, BigDecimal price) {
         this.id = id;
+        this.examinationId = examinationId;
         this.patient = patient;
         this.doctor = doctor;
+        this.qualification = qualification;
         this.examinationTime = examinationTime;
         this.price = price;
     }
@@ -44,6 +49,14 @@ public class Examinations {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getExaminationId() {
+        return examinationId;
+    }
+
+    public void setExaminationId(String examinationId) {
+        this.examinationId = examinationId;
     }
 
     public Patients getPatient() {
@@ -60,6 +73,14 @@ public class Examinations {
 
     public void setDoctor(Personnel doctor) {
         this.doctor = doctor;
+    }
+
+    public QualificationPrices getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(QualificationPrices qualification) {
+        this.qualification = qualification;
     }
 
     public LocalDateTime getExaminationTime() {
@@ -82,8 +103,10 @@ public class Examinations {
     public String toString() {
         return "Examinations{" +
                 "id='" + id + '\'' +
+                ", examinationId='" + examinationId + '\'' +
                 ", patient=" + patient +
                 ", doctor=" + doctor +
+                ", qualification=" + qualification +
                 ", examinationTime=" + examinationTime +
                 ", price=" + price +
                 '}';
