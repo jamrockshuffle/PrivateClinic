@@ -73,7 +73,7 @@
 
                 <span class="name-font nav-item active nav-link" style="color: white; padding-right: 50px">Гаряча лінія: +38 (095)-000-00-00</span>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn dangerCustom my-2 my-sm-2" type="submit">Онлайн-запис</button>
+                    <a class="btn dangerCustom my-2 my-sm-2" href="/online-zapys">Онлайн-запис</a>
                     &nbsp;&nbsp;&nbsp;
                     <a href="/logIn" class="btn btn-info my-2 my-sm-0 btn-lg">Увійти</a>
                 </form>
@@ -107,123 +107,47 @@
 
             </div>
 
-
-            <!--<div class="containerGrid">
-                <h2 class="pb-2  name-font" align="center">Послуги:</h2>
-                <p class="text-muted border-bottom" align="center"></p>
-                <div class="row mb-3 text-center">
-                    <div class="col-md-8 themed-grid-col">
-                        <div class="pb-3">
-                            Вакцинація
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 themed-grid-col">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block">Записатися</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 themed-grid-col"><br><br><br><br>У клініці наявці наступні послуги, пов'язані з вакцинацією:</div>
-
-                    <div class="col-md-8 themed-grid-col">
-                        <div class="pb-3">
-                            .col-md-8
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 themed-grid-col">.col-md-6</div>
-                            <div class="col-md-6 themed-grid-col">.col-md-6</div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 themed-grid-col">.col-md-4</div>
-
-
-                </div>
-            </div>-->
-
             <div class="containerGrid px-4 py-5">
                 <h2 class="pb-2  name-font" align="center">Послуги:</h2>
                 <p class="text-muted border-bottom" align="center"></p>
                 <div class="row mb-3 text-center">
-                    <div class="col-md-4 themed-grid-col "><br><br><br><h5 class="fw-bold">Вакцинація</h5></div>
-                    <div class="col-md-8 themed-grid-col">
-                        <div class="row">
-                            <div class="col-md-6 themed-grid-col fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="col-md-4 themed-grid-col "><br><br><br><h5 class="fw-bold">Вакцинація</h5></div>
                     <div class="col-md-8 themed-grid-col">
                         <div class="row">
                             <div class="col-md-6 themed-grid-col fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/COVID-19">Записатися</a>
                             </div>
                             <div class="col-md-6 themed-grid-col  fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/Вітряна%20віспа">Записатися</a>
                             </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col  fw-bold">Кліщовий енцефаліт - 2440 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/Кліщовий%20енцефаліт">Записатися</a>
                             </div>
-                            <div class="col-md-6 themed-grid-col fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col fw-bold">Герпес зостер - 400 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/Герпес%20зостер">Записатися</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4 themed-grid-col "><br><br><br><h5 class="fw-bold">Вакцинація</h5></div>
+                    <div class="col-md-4 themed-grid-col "><br><br><br><h5 class="fw-bold">МРТ</h5></div>
                     <div class="col-md-8 themed-grid-col">
                         <div class="row">
-                            <div class="col-md-6 themed-grid-col fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col fw-bold">МРТ всіх відділів хребта - 10000 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/МРТ%20всіх%20відділів%20хребта">Записатися</a>
                             </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col  fw-bold">МРТ головного мозку - 3059 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/МРТ%20головного%20мозку">Записатися</a>
                             </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col  fw-bold">МРТ коліна - 2500 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/МРТ%20коліна">Записатися</a>
                             </div>
-                            <div class="col-md-6 themed-grid-col fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
+                            <div class="col-md-6 themed-grid-col fw-bold">МРТ плеча - 999 грн<br>
+                                <a class="btn btn-info btn-block btn-lg" href="/online-zapys/МРТ%20плеча">Записатися</a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4 themed-grid-col "><br><br><br><h5 class="fw-bold">Вакцинація</h5></div>
-                    <div class="col-md-8 themed-grid-col">
-                        <div class="row">
-                            <div class="col-md-6 themed-grid-col fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col  fw-bold">COVID-19 - 300 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                            <div class="col-md-6 themed-grid-col fw-bold">Вітряна віспа - 690 грн<br>
-                                <button class="btn btn-info btn-block btn-lg">Записатися</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

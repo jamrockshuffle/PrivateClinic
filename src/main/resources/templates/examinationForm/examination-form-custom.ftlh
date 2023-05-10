@@ -30,27 +30,17 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Ім'я</label>
-                            <input type="text" class="form-control" name="firstName" id="firstName" disabled placeholder="" value="${examination.firstName}" required>
+                            <input type="text" class="form-control" name="firstName" id="firstName" disabled placeholder="" value="${examinationCustom.firstName}" required>
                         </div>
 
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Прізвище</label>
-                            <input type="text" class="form-control" name="lastName" id="lastName" disabled placeholder="" value="${examination.lastName}" required>
+                            <input type="text" class="form-control" name="lastName" id="lastName" disabled placeholder="" value="${examinationCustom.lastName}" required>
                         </div>
 
-                        <#--<div class="col-12">
-                            <label for="service" class="form-label">Напрямок</label>
-                            <@spring.formSingleSelect "examination.qualification", qualifications, "class='form-select' onmouseout='test()'"/>
-                            <div class="invalid-feedback">
-                                Будь ласка, виберіть напрямок
-                            </div>
-                        </div>
--->
                         <div class="col-12">
                             <label for="qualification" class="form-label">Напрямок</label>
-                            <#--<@spring.formSingleSelect "examination.qualification", qualifications, "class='form-select' onmouseout='test()'"/>-->
-                            <select id="qualification" name="qualification" class="form-select" onchange="fill(this);" required>
-                            </select>
+                            <input type="text" id="qualification" name="qualification" class="form-control" value="${examinationCustom.qualification}" readonly required>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть напрямок
                             </div>
@@ -58,7 +48,7 @@
 
                         <div class="col-md-5">
                             <label for="doctor" class="form-label">Лікар</label>
-                            <select id="doctor" name="doctor" class="form-select" required>
+                            <select id="doctor" name="doctor" class="form-select">
                             </select>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть лікаря
@@ -67,8 +57,7 @@
 
                         <div class="col-md-4">
                             <label for="qualificationPrice" class="form-label">Послуга</label>
-                            <select id="qualificationPrice" name="qualificationPrice" class="form-select" required>
-                            </select>
+                            <input type="text" id="qualificationPrice" name="qualificationPrice" class="form-control" value="${examinationCustom.qualificationPrice}" readonly required>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть послугу
                             </div>
@@ -98,23 +87,12 @@
 
 <script>
 
-    var qualification=[<#list qualifications as qualification>"${qualification.name}",</#list>]
-
-    var selectQualification = document.getElementById("qualification");
-    selectQualification.options[selectQualification.options.length] = new Option("...", "...");
-    for(index in qualification) {
-        selectQualification.options[selectQualification.options.length] = new Option(qualification[index], index);
-    }
-
-    function fill(qualif) {
-        var text = qualif.options[qualif.selectedIndex].text;
-
         // doctors
         var arrName=[<#list doctors as doctor>"${doctor.name}", </#list>];
         var arrQualif=[<#list doctors as doctor>"${doctor.qualification.name}", </#list>];
         var arrDoctor = arrName.reduce((obj, key, index) => ({ ...obj, [key]: arrQualif[index] }), {});
         var filteredDoctor = Object.keys(arrDoctor).filter(function(key) {
-            return arrDoctor[key] === text;
+            return arrDoctor[key] === document.getElementById("qualification").value;
         });
 
         var select = document.getElementById("doctor");
@@ -128,25 +106,7 @@
             select.options[select.options.length] = new Option(filteredDoctor[index], filteredDoctor[index]);
         }
 
-        // qualification prices
-        var priceName=[<#list services as service>"${service.name}", </#list>];
-        var priceQualif=[<#list services as service>"${service.qualification.name}", </#list>];
-        var arrPrice = priceName.reduce((obj, key, index) => ({ ...obj, [key]: priceQualif[index] }), {});
-        var filteredPrice = Object.keys(arrPrice).filter(function(key) {
-            return arrPrice[key] === text;
-        });
 
-        var selectPrice = document.getElementById("qualificationPrice");
-        var j, K = selectPrice.options.length - 1;
-        for(j = K; j >= 0; j--) {
-            selectPrice.remove(j);
-        }
-
-        selectPrice.options[selectPrice.options.length] = new Option("...", "...");
-        for(index in filteredPrice) {
-            selectPrice.options[selectPrice.options.length] = new Option(filteredPrice[index], filteredPrice[index]);
-        }
-    }
 </script>
 
 </body>

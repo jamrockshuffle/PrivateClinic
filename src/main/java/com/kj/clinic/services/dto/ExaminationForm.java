@@ -83,4 +83,16 @@ public class ExaminationForm {
     public void setExaminationTime(String examinationTime) {
         this.examinationTime = examinationTime;
     }
+
+    @Override
+    public String toString() {
+        return "ExaminationForm{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", qualification='" + qualification + '\'' +
+                ", doctor='" + doctor + '\'' +
+                ", qualificationPrice='" + qualificationPrice + '\'' +
+                ", examinationTime='" + examinationTime + '\'' +
+                '}';
+    }
 }

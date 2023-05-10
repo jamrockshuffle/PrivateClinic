@@ -13,6 +13,7 @@ package com.kj.clinic.services.dao.examinations;
 import com.kj.clinic.model.Examinations;
 import com.kj.clinic.model.Patients;
 import com.kj.clinic.model.Personnel;
+import com.kj.clinic.model.QualificationPrices;
 import com.kj.clinic.repository.*;
 import com.kj.clinic.services.dto.examinations.ExaminationsDTOCreate;
 import com.kj.clinic.services.dto.examinations.ExaminationsDTOUpdate;
@@ -39,6 +40,22 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
 
     @Autowired
     QualificationPricesRepo qualificationPricesRepo;
+
+    public Personnel getByName(String name) {
+        return personnelRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public QualificationPrices getByQPrice(String name) {
+        return qualificationPricesRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Override
     public List<Examinations> findAll() {
@@ -127,6 +144,49 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
         }
 
         BigDecimal finalPrice = qualificationPricesRepo.findById(dtoObj.getQualification()).get().getPrice()
+                .multiply(patientDiscount)
+                .multiply(doctorPrice);
+
+        obj.setPrice(finalPrice);
+
+        examinationsRepo.save(obj);
+        return obj;
+    }
+
+    @Override
+    public Examinations createUI(ExaminationsDTOCreate dtoObj) {
+
+        String id = String.valueOf(this.findAll()
+                .stream()
+                .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
+
+        Examinations obj = new Examinations();
+        obj.setId(id);
+
+        UUID examId = UUID.randomUUID();
+        obj.setExaminationId(examId.toString());
+
+        obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
+        obj.setDoctor(this.getByName(dtoObj.getDoctor()));
+        obj.setQualification(this.getByQPrice(dtoObj.getQualification()));
+        obj.setExaminationTime(LocalDateTime.parse(dtoObj.getExaminationTime()));
+
+        BigDecimal patientDiscount;
+        BigDecimal doctorPrice;
+
+        switch (patientsRepo.findById(dtoObj.getPatient()).get().getCategory()) {
+            case "II" -> patientDiscount = BigDecimal.valueOf(0.7);
+            case "III" -> patientDiscount = BigDecimal.valueOf(0.5);
+            default -> patientDiscount = BigDecimal.valueOf(1);
+        }
+
+        switch (this.getByName(dtoObj.getDoctor()).getPersonnelCategory().getName()) {
+            case "II" -> doctorPrice = BigDecimal.valueOf(1.5);
+            case "III" -> doctorPrice = BigDecimal.valueOf(2.0);
+            default -> doctorPrice = BigDecimal.valueOf(1);
+        }
+
+        BigDecimal finalPrice = this.getByQPrice(dtoObj.getQualification()).getPrice()
                 .multiply(patientDiscount)
                 .multiply(doctorPrice);
 

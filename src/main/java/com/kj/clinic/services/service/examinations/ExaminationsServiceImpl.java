@@ -49,4 +49,9 @@ public class ExaminationsServiceImpl implements IExaminationsService{
     public Examinations update(ExaminationsDTOUpdate dtoObj) {
         return dao.update(dtoObj);
     }
+
+    @Override
+    public Examinations createUI(ExaminationsDTOCreate dtoObj) {
+        return dao.createUI(dtoObj);
+    }
 }

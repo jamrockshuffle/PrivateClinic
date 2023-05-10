@@ -22,4 +22,5 @@ public interface IExaminationsDAO {
     List<Examinations> deleteById (String id);
     Examinations create (ExaminationsDTOCreate dtoObj);
     Examinations update (ExaminationsDTOUpdate dtoObj);
+    Examinations createUI (ExaminationsDTOCreate dtoObj);
 }
