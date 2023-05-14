@@ -103,6 +103,6 @@ public class AuthService {
 
     private Role mapStringToRole(String roleString) {
         return roleRepository.findByName(Role.ERole.valueOf(roleString))
-                .orElseThrow(() -> new IllegalArgumentException("Wrong name of role" + roleString));
+                .orElseThrow(() -> new IllegalArgumentException("Wrong name of role " + roleString));
     }
 }

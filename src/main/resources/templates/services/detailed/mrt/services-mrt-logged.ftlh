@@ -5,16 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Лікарі | Solus Solutions</title>
-    <#include "../a-assets/styles/common-styles.ftlh">
-    <#include "../a-assets/styles/bootstrap5.ftlh">
-    <#include "../a-assets/styles/bootstrap.ftlh">
-    <#include "styles/doctors-styles.ftlh">
+    <title>МРТ | Solus Solutions</title>
+    <#include "../../../a-assets/styles/common-styles.ftlh">
+    <#include "../../../a-assets/styles/bootstrap5.ftlh">
+    <#include "../../../a-assets/styles/bootstrap.ftlh">
 
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-           rel="stylesheet"
-           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-           crossorigin="anonymous"> -->
+    <style>
+        .containerService {
+            --bs-gutter-x:1.5rem;
+            --bs-gutter-y:0;
+            width:100%;
+            /*    padding-right:calc(var(--bs-gutter-x) * .5);
+                padding-left:calc(var(--bs-gutter-x) * .5);*/
+            margin-right:auto;
+            margin-left:auto
+        }
+
+        @media (min-width:576px) {
+            .containerService {
+                max-width:540px
+            }
+        }
+
+        @media (min-width:768px) {
+            .containerService {
+                max-width:720px
+            }
+        }
+
+        @media (min-width:992px) {
+            .containerService {
+                max-width:960px
+            }
+        }
+
+        @media (min-width:1200px) {
+            .containerService {
+                max-width:1140px
+            }
+        }
+
+        @media (min-width:1000px) {
+            .containerService {
+                max-width:1220px
+            }
+        }
+    </style>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
@@ -89,80 +125,48 @@
         <main role="main">
 
             <div class="jumbotronCustom">
-                <!--<section class="py-5 text-center container">
-                  <div class="row ">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                      <h1 class="fw-bold displayCustom">НАШІ ЛІКАРІ</h1>
-                    </div>
-                  </div>
-                </section>-->
-
                 <div style="margin-left: 100px;"> <!--class="px-4 py-5"-->
                     <div class="containerHeader my-5">
                         <div class="row  align-items-center ">
                             <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                                <h1 class="display-4 fw-bold lh-1">Майстерність та досвід</h1>
-                                <p class="lead text-muted-custom">Перед вами - працівники нашої клініки, кращі з кращих,
-                                    з якими ми маємо честь працювати. Тут ви можете дізнатися їхню спеціальність, посаду та категорію.</p>
-                            </div>
-                            <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden ">
-                                <img class="rounded-lg-3" src="/assets/SOLUS%20SOLUTIONS.png" alt="" width="250px" height="250px">
+                                <h1 class="display-4 fw-bold lh-1">МРТ</h1>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="album py-5 bg-light">
+            <!--<h2 class="pb-2  name-font" align="center">Послуги:</h2>
+            <p class="text-muted border-bottom" align="center"></p>-->
 
-                <div class="containerBS5">
+            <div class="containerService px-4 py-5 fs-5">
 
-                    <h2 class="pb-2  name-font" align="center">Наші лікарі:</h2>
-                    <p class="text-muted border-bottom" align="center"></p>
+                <span class="fw-bold">Магнітно-резонансна томографія, МРТ</span> —
+                томографічний метод медичної візуалізації та дослідження внутрішніх органів і тканин.
 
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <div class="colBS5">
-                            <div class="card shadow-sm border border-info">
+                <br><br>
 
-                                <img src="/assets/logo-cropped.png" width="465px" height="225px">
-                                <div class="card-bodyBS5">
-                                    <p class="card-text">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
-                                </div>
-                            </div>
-                        </div>
+                Наявні наступні послуги:
 
-                        <div class="colBS5">
-                            <div class="card shadow-sm border border-info">
+                <br><br>
 
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"
-                                     aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                                     focusable="false"><title>Placeholder</title><rect width="100%" height="100%"
-                                                                                       fill="#55595c"/><text x="50%" y="50%" fill="#eceeef"
-                                                                                                             dy=".3em">Thumbnail</text></svg>
-                                <div class="card-bodyBS5">
-                                    <p class="card-text">Посада <br> напрямки <br> категорія</p>
-                                </div>
-                            </div>
-                        </div>
+                <ul>
+                    <li style="margin-bottom: 15px;"><span class="fw-bold">МРТ всіх відділів хребта</span> – високочутливий метод діагностики,
+                        що дозволяє точно оцінити стан твердих та м'яких тканин за один візит. Його застосовують при обстеженні, коли необхідна якісна візуалізація анатомічних структур різної щільності –
+                        кісток, зв'язок, спинного мозку, міжхребцевих дисків, нервів та судин. <span class="fw-bold">Ціна - 10000 грн</span></li>
 
-                        <div class="colBS5">
-                            <div class="card shadow-sm border border-info">
+                    <li style="margin-bottom: 15px;"><span class="fw-bold">МРТ головного мозку</span> –  показує стан м'яких тканин, всіх відділів мозку, мозочка, шлуночків, базальних ядер,
+                        дає можливість відстежити співвідношення сірої та білої речовини. <span class="fw-bold">Ціна - 3059 грн</span></li></li>
 
-                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" role="img"
-                                     aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
-                                     focusable="false"><title>Placeholder</title><rect width="100%" height="100%"
-                                                                                       fill="#55595c"/><text x="50%" y="50%" fill="#eceeef"
-                                                                                                             dy=".3em">Thumbnail</text></svg>
-                                <div class="card-bodyBS5">
-                                    <p class="card-text">Посада <br> напрямки <br> категорія</p>
-                                </div>
-                            </div>
-                        </div>
+                    <li style="margin-bottom: 15px;"><span class="fw-bold">МРТ коліна</span> – допомагає визначати будову хрящів,
+                        кісткової тканини та капсули, а також позасуглобові
+                        та внутрішньосуглобові новоутворення. <span class="fw-bold">Ціна - 2500 грн</span></li></li>
 
+                    <li style="margin-bottom: 15px;"><span class="fw-bold">МРТ плеча</span> – дослідження надає детальну
+                        і якісну візуалізацію структур всередині плечового суглоба,
+                        в тому числі кісток, сухожиль, м'язів і судин. <span class="fw-bold">Ціна - 999 грн</span></li></li>
+                </ul>
 
-                    </div>
-                </div>
             </div>
 
         </main>

@@ -91,8 +91,6 @@ public class AuthUIController {
         patients.setIllnesses(request.getIllnesses());
         patients.setUsername(request.getUsername());
 
-        System.out.println(request.getUsername());
-
         patientsService.createUI(patients);
 
         SignUpRequestNoLogin requestNoLogin = new SignUpRequestNoLogin();
@@ -113,12 +111,13 @@ public class AuthUIController {
 
         servletResponse.addCookie(cookie);
 
-        return "redirect:/";
+        return "goBack/goBackByThree";
     }
 
     @GetMapping("/logIn")
     public String logIn(Model model,
-                        SecurityContextHolderAwareRequestWrapper requestWrapper){
+                        SecurityContextHolderAwareRequestWrapper requestWrapper,
+                        HttpServletRequest servletRequest){
 
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/";
@@ -148,7 +147,7 @@ public class AuthUIController {
 
             servletResponse.addCookie(cookie);
 
-            return "redirect:/";
+            return "goBack/goBackByTwo";
     }
 
     @GetMapping("/logOut")
@@ -161,7 +160,10 @@ public class AuthUIController {
 
         response.addCookie(cookie);
 
-        return "redirect:/";
+        //String referer = request.getHeader("Referer");
+        //return "redirect:" + referer;
+
+        return "goBack/goBackByOne";
     }
 
     @GetMapping("/login")

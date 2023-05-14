@@ -53,13 +53,12 @@
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="/services" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Напрямки</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdownItemCustom" href="#">Вакцинація</a>
-                            <a class="dropdownItemCustom" href="#">МРТ</a>
-                            <a class="dropdownItemCustom" href="#">Офтальмологія</a>
-                            <a class="dropdownItemCustom" href="#">Гінекологія</a>
-                            <a class="dropdownItemCustom" href="#">Хірургія</a>
-                            <a class="dropdownItemCustom" href="#">Стоматологія</a>
-                            <a class="dropdownItemCustom" href="#">Кардіологія</a>
+                            <a class="dropdownItemCustom" href="/services/vaccination">Вакцинація</a>
+                            <a class="dropdownItemCustom" href="/services/mrt">МРТ</a>
+                            <a class="dropdownItemCustom" href="/services/ophthalmology">Офтальмологія</a>
+                            <a class="dropdownItemCustom" href="/services/surgery">Хірургія</a>
+                            <a class="dropdownItemCustom" href="/services/stomatology">Стоматологія</a>
+                            <a class="dropdownItemCustom" href="/services/cardiology">Кардіологія</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdownItemCustom btn-light" href="/services">Більше &raquo;</a>
                         </div>
@@ -76,7 +75,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" style="font-size: 1.25rem;" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}</a>
-                            <div class="dropdown-menu" style="min-width: 1rem; width: 9rem;" aria-labelledby="dropdown01">
+                            <div class="dropdown-menu" style="min-width: 1rem; width: 100%;" aria-labelledby="dropdown01">
                                 <a class="dropdownItemCustom" href="#">Кабінет</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdownItemCustom btn-light" href="/logOut">Вийти</a>
@@ -127,6 +126,24 @@
                         <div class="h-100 p-5 border border-info rounded-3">
                             <h2>Вакцинація</h2>
                             <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
+                            <a href="/services/vaccination" class="btn btn-info btn-lg" type="button">Більше &raquo;</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 border border-info rounded-3">
+                            <h2>МРТ</h2>
+                            <p>Тут ви зможете переглянути всю інформацію про доступні послуги, пов'язані з МРТ, їхню ціну та фахівців, котрі цим займаються.</p>
+                            <a href="/services/mrt" class="btn btn-info btn-lg" type="button">Більше &raquo;</a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 border border-info rounded-3">
+                            <h2>Template</h2>
+                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
                             <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
                         </div>
                     </div>
@@ -134,80 +151,6 @@
                     <div class="col-md-6">
                         <div class="h-100 p-5 border border-info rounded-3">
                             <h2>Template</h2>
-                            <p>Or, keep it light and add a border for some added definition to the boundaries of your content.
-                                Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both
-                                column's content for equal-height.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
-                            <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
-                            <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="h-100 p-5 border border-info rounded-3">
-                            <h2>Вакцинація</h2>
                             <p>Тут ви зможете переглянути всю інформацію про доступні вакцини, їхню ціну та фахівців, котрі цим займаються.</p>
                             <button class="btn btn-info btn-lg" type="button">Більше &raquo;</button>
                         </div>

@@ -76,7 +76,7 @@
 
                         <div class="col-md-3">
                             <label for="examinationTime" class="form-label">Бажаний час прийому</label>
-                            <input type="datetime-local" class="form-select" name="examinationTime" id="examinationTime" placeholder="" required>
+                            <input type="datetime-local" class="form-control" name="examinationTime" id="examinationTime" placeholder="" required>
                             <div class="invalid-feedback">
                                 Будь ласка, введіть час
                             </div>
@@ -148,6 +148,8 @@
         }
     }
 </script>
+
+<#include "styles/examination-form-js.ftlh"/>
 
 </body>
 </html>

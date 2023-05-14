@@ -54,13 +54,12 @@
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="/services" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Напрямки</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdownItemCustom" href="#">Вакцинація</a>
-                            <a class="dropdownItemCustom" href="#">МРТ</a>
-                            <a class="dropdownItemCustom" href="#">Офтальмологія</a>
-                            <a class="dropdownItemCustom" href="#">Гінекологія</a>
-                            <a class="dropdownItemCustom" href="#">Хірургія</a>
-                            <a class="dropdownItemCustom" href="#">Стоматологія</a>
-                            <a class="dropdownItemCustom" href="#">Кардіологія</a>
+                            <a class="dropdownItemCustom" href="/services/vaccination">Вакцинація</a>
+                            <a class="dropdownItemCustom" href="/services/mrt">МРТ</a>
+                            <a class="dropdownItemCustom" href="/services/ophthalmology">Офтальмологія</a>
+                            <a class="dropdownItemCustom" href="/services/surgery">Хірургія</a>
+                            <a class="dropdownItemCustom" href="/services/stomatology">Стоматологія</a>
+                            <a class="dropdownItemCustom" href="/services/cardiology">Кардіологія</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdownItemCustom btn-light" href="/services">Більше &raquo;</a>
                         </div>
@@ -77,7 +76,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" style="font-size: 1.25rem;" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}</a>
-                            <div class="dropdown-menu" style="min-width: 1rem; width: 9rem;" aria-labelledby="dropdown01">
+                            <div class="dropdown-menu" style="min-width: 1rem; width: 100%;" aria-labelledby="dropdown01">
                                 <a class="dropdownItemCustom" href="#">Кабінет</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdownItemCustom btn-light" href="/logOut">Вийти</a>
@@ -239,7 +238,26 @@
                                 <small class="text-muted">Наприклад: +38095xxxxxxx</small>
                                 <label for="phone">Ваш номер телефону</label>
                             </div>
-                            <button class="w-100 btn btn-lg btn-info" type="submit">Надіслати</button>
+
+                            <a class="w-100 btn btn-lg btn-info" style="color: white" onclick="clickButton();">Надіслати</a>
+                            <a type="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" hidden="hidden" id="modalButton">Надіслати</a>
+
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Ми вам зателефонуємо!</h1>
+                                        </div>
+                                        <div class="modal-body">
+                                            З вами зв'яжуться протягом дня!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-info" data-bs-dismiss="modal">Зрозуміло</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -299,6 +317,12 @@
 
     </div>
 </div>
+
+<script>
+    function clickButton() {
+        document.getElementById("modalButton").click();
+    }
+</script>
 
 </body>
 </html>

@@ -53,13 +53,12 @@
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="/services" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Напрямки</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdownItemCustom" href="#">Вакцинація</a>
-                            <a class="dropdownItemCustom" href="#">МРТ</a>
-                            <a class="dropdownItemCustom" href="#">Офтальмологія</a>
-                            <a class="dropdownItemCustom" href="#">Гінекологія</a>
-                            <a class="dropdownItemCustom" href="#">Хірургія</a>
-                            <a class="dropdownItemCustom" href="#">Стоматологія</a>
-                            <a class="dropdownItemCustom" href="#">Кардіологія</a>
+                            <a class="dropdownItemCustom" href="/services/vaccination">Вакцинація</a>
+                            <a class="dropdownItemCustom" href="/services/mrt">МРТ</a>
+                            <a class="dropdownItemCustom" href="/services/ophthalmology">Офтальмологія</a>
+                            <a class="dropdownItemCustom" href="/services/surgery">Хірургія</a>
+                            <a class="dropdownItemCustom" href="/services/stomatology">Стоматологія</a>
+                            <a class="dropdownItemCustom" href="/services/cardiology">Кардіологія</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdownItemCustom btn-light" href="/services">Більше &raquo;</a>
                         </div>
