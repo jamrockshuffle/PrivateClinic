@@ -29,6 +29,7 @@ public class Examinations {
     private QualificationPrices qualification;
     private LocalDateTime examinationTime;
     private BigDecimal price;
+    private String status;
 
     public Examinations() {
     }
@@ -41,6 +42,17 @@ public class Examinations {
         this.qualification = qualification;
         this.examinationTime = examinationTime;
         this.price = price;
+    }
+
+    public Examinations(String id, String examinationId, Patients patient, Personnel doctor, QualificationPrices qualification, LocalDateTime examinationTime, BigDecimal price, String status) {
+        this.id = id;
+        this.examinationId = examinationId;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.qualification = qualification;
+        this.examinationTime = examinationTime;
+        this.price = price;
+        this.status = status;
     }
 
     public String getId() {
@@ -97,6 +109,14 @@ public class Examinations {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

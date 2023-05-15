@@ -14,6 +14,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document("Results")
 public class Results {
@@ -23,14 +24,14 @@ public class Results {
 
     private Patients patient;
     private String examinationId;
-    private LocalDate examinationDate;
+    private LocalDateTime examinationDate;
     private QualificationPrices qualification;
     private String prescription;
 
     public Results() {
     }
 
-    public Results(String id, Patients patient, String examinationId, LocalDate examinationDate, QualificationPrices qualification, String prescription) {
+    public Results(String id, Patients patient, String examinationId, LocalDateTime examinationDate, QualificationPrices qualification, String prescription) {
         this.id = id;
         this.patient = patient;
         this.examinationId = examinationId;
@@ -55,11 +56,11 @@ public class Results {
         this.patient = patient;
     }
 
-    public LocalDate getExaminationDate() {
+    public LocalDateTime getExaminationDate() {
         return examinationDate;
     }
 
-    public void setExaminationDate(LocalDate examinationDate) {
+    public void setExaminationDate(LocalDateTime examinationDate) {
         this.examinationDate = examinationDate;
     }
 

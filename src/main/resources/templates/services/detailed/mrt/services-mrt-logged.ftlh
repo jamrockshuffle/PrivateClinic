@@ -112,7 +112,9 @@
                         <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" style="font-size: 1.25rem;" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}</a>
                             <div class="dropdown-menu" style="min-width: 1rem; width: 100%;" aria-labelledby="dropdown01">
-                                <a class="dropdownItemCustom" href="#">Кабінет</a>
+                                <a class="dropdownItemCustom" href="/cabinet">Кабінет</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdownItemCustom" href="/settings">Настройки</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdownItemCustom btn-light" href="/logOut">Вийти</a>
                             </div>

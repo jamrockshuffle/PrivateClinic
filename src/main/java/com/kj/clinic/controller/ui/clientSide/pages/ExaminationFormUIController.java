@@ -110,8 +110,6 @@ public class ExaminationFormUIController {
                                 @ModelAttribute("examination") ExaminationForm examination,
                                     SecurityContextHolderAwareRequestWrapper requestWrapper){
 
-        System.out.println(examination.toString());
-
         ExaminationsDTOCreate examinationsDTO = new ExaminationsDTOCreate();
         examinationsDTO.setPatient(this.getByUsername(requestWrapper.getUserPrincipal().getName()).getId());
         examinationsDTO.setDoctor(examination.getDoctor());

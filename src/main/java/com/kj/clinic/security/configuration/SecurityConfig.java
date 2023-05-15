@@ -65,7 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/signUp",
                 "/online-zapys",
                 "/online-zapys/{serviceName}",
-                "/services/{name}").permitAll()
+                "/services/{name}",
+                "/checkout/{id}").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);

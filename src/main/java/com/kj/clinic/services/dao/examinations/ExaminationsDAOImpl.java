@@ -110,6 +110,7 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
                 .multiply(doctorPrice);
 
         obj.setPrice(finalPrice);
+        //obj.setStatus("");
 
         examinationsRepo.save(obj);
         return obj;
@@ -148,6 +149,7 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
                 .multiply(doctorPrice);
 
         obj.setPrice(finalPrice);
+        obj.setStatus(examinationsRepo.findById(dtoObj.getId()).get().getStatus());
 
         examinationsRepo.save(obj);
         return obj;

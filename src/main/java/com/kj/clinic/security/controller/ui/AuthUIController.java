@@ -108,6 +108,7 @@ public class AuthUIController {
         // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
         Cookie cookie = new Cookie("tkn", response.getJwt());
+        cookie.setMaxAge(86400000);
 
         servletResponse.addCookie(cookie);
 
@@ -144,6 +145,7 @@ public class AuthUIController {
             // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
             Cookie cookie = new Cookie("tkn", response.getJwt());
+            cookie.setMaxAge(86400000);
 
             servletResponse.addCookie(cookie);
 

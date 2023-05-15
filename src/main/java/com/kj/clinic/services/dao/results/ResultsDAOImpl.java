@@ -71,9 +71,9 @@ public class ResultsDAOImpl implements IResultsDAO{
         obj.setId(id);
 
         obj.setExaminationId(dtoObj.getExaminationId());
-        obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
-        obj.setExaminationDate(LocalDate.parse(dtoObj.getExaminationDate()));
 
+        obj.setPatient(this.getExaminationByID(dtoObj.getExaminationId()).getPatient());
+        obj.setExaminationDate(this.getExaminationByID(dtoObj.getExaminationId()).getExaminationTime());
         obj.setQualification(this.getExaminationByID(dtoObj.getExaminationId()).getQualification());
 
         obj.setPrescription(dtoObj.getPrescription());
@@ -90,9 +90,9 @@ public class ResultsDAOImpl implements IResultsDAO{
         obj.setId(resultsRepo.findById(dtoObj.getId()).get().getId());
 
         obj.setExaminationId(dtoObj.getExaminationId());
-        obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
-        obj.setExaminationDate(LocalDate.parse(dtoObj.getExaminationDate()));
 
+        obj.setPatient(this.getExaminationByID(dtoObj.getExaminationId()).getPatient());
+        obj.setExaminationDate(this.getExaminationByID(dtoObj.getExaminationId()).getExaminationTime());
         obj.setQualification(this.getExaminationByID(dtoObj.getExaminationId()).getQualification());
 
         obj.setPrescription(dtoObj.getPrescription());
