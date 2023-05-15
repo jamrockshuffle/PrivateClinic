@@ -12,23 +12,21 @@ package com.kj.clinic.controller.ui.clientSide.pages;
 
 import com.kj.clinic.model.Examinations;
 import com.kj.clinic.model.Patients;
-import com.kj.clinic.model.Personnel;
+import com.kj.clinic.model.Results;
 import com.kj.clinic.repository.ExaminationsRepo;
 import com.kj.clinic.repository.PatientsRepo;
-import com.kj.clinic.services.dto.ExaminationForm;
-import com.kj.clinic.services.dto.examinations.ExaminationsDTOCreate;
+import com.kj.clinic.repository.ResultsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-public class CabinetUIController {
+public class CabinetAndPaymentUIController {
 
     @Autowired
     ExaminationsRepo examinationsRepo;
@@ -36,7 +34,16 @@ public class CabinetUIController {
     @Autowired
     PatientsRepo patientsRepo;
 
-    public List<Examinations> getByUsername(String username) {
+    @Autowired
+    ResultsRepo resultsRepo;
+
+    public List<Results> getResultsByUsername(String username) {
+        return resultsRepo.findAll().stream()
+                .filter(item -> item.getPatient().getUsername()
+                        .equals(username)).collect(Collectors.toList());
+    }
+
+    public List<Examinations> getByExaminationsUsername(String username) {
         return examinationsRepo.findAll().stream()
                 .filter(item -> item.getPatient().getUsername()
                         .equals(username)).collect(Collectors.toList());
@@ -65,8 +72,19 @@ public class CabinetUIController {
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
             model.addAttribute("username", requestWrapper.getUserPrincipal().getName());
 
-            List<Examinations> examinations = this.getByUsername(requestWrapper.getUserPrincipal().getName());
+            List<Examinations> examinations = this.getByExaminationsUsername(requestWrapper.getUserPrincipal().getName());
             model.addAttribute("examinations", examinations);
+
+            List<Results> results = this.getResultsByUsername(requestWrapper.getUserPrincipal().getName());
+            model.addAttribute("results", results);
+
+            Patients patient = this.getPatientByUsername(requestWrapper.getUserPrincipal().getName());
+            model.addAttribute("patient", patient);
+
+            String fullName = this.getPatientByUsername(requestWrapper.getUserPrincipal().getName()).getName();
+            String[] names = fullName.split(" ");
+
+            model.addAttribute("firstName", names[0]);
 
             return "cabinetAndCheckout/cabinet/cabinet";
         } else {

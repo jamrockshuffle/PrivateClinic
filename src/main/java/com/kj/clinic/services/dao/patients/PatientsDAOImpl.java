@@ -64,8 +64,8 @@ public class PatientsDAOImpl implements IPatientsDAO{
         obj.setIllnesses(illnessesRepo.findById(dtoObj.getIllnesses()).get());
 
         switch (illnessesRepo.findById(dtoObj.getIllnesses()).get().getName()) {
-            case "Chronic" -> obj.setCategory("II");
-            case "Disability" -> obj.setCategory("III");
+            case "Хронічні" -> obj.setCategory("II");
+            case "Інвалідність" -> obj.setCategory("III");
             default -> obj.setCategory("I");
         }
 
@@ -120,8 +120,8 @@ public class PatientsDAOImpl implements IPatientsDAO{
         }
 
         switch (dtoObj.getIllnesses()) {
-            case "Chronic" -> obj.setCategory("II");
-            case "Disability" -> obj.setCategory("III");
+            case "Хронічні" -> obj.setCategory("II");
+            case "Інвалідність" -> obj.setCategory("III");
             default -> obj.setCategory("I");
         }
 
