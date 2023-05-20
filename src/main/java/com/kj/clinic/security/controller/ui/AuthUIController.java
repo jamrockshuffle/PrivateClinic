@@ -128,11 +128,11 @@ public class AuthUIController {
 
             LoginResponse response = service.authenticateRequest(loginRequest);
 
-            //secure
+            //secure httponly samesite=strict
             // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
             Cookie cookie = new Cookie("tkn", response.getJwt());
-            cookie.setMaxAge(86400000);
+            cookie.setMaxAge(604800);
 
             servletResponse.addCookie(cookie);
 
@@ -170,11 +170,11 @@ public class AuthUIController {
         if (service.checkValidity(request)) {
                 LoginResponse response = service.authenticateRequest(request);
 
-                //secure
+                //secure httponly samesite=strict
                 // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
                 Cookie cookie = new Cookie("tkn", response.getJwt());
-                cookie.setMaxAge(86400000);
+                cookie.setMaxAge(604800);
 
                 servletResponse.addCookie(cookie);
 
