@@ -7,9 +7,32 @@
     <#include "../../a-assets/styles/bootstrap5.ftlh">
     <#include "../../a-assets/styles/bootstrap.ftlh">
     <#include "styles/sign-up-styles.ftlh">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
 </head>
 <body class="bg-info body-font">
 
+<div class="text-left modal-font">
+    <a type="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" hidden="hidden" id="modalButton">Надіслати</a>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Ім'я користувача вже існує</h1>
+                </div>
+                <div class="modal-body">
+                    Будь ласка, повторіть спробу!
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" data-bs-dismiss="modal">Далі</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <main>
@@ -122,8 +145,10 @@
     </footer>
 </div>
 
-
 <script>
+
+    //alert("Ім'я користувача вже існує! Будь ласка, заповніть форму ще раз.");
+    document.getElementById("modalButton").click();
 
     var selectIllness = document.getElementById("illnesses");
     var option = new Option("...", "");

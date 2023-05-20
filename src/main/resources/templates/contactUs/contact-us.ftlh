@@ -101,8 +101,6 @@
         <footer>
             <div class="container px-4 py-5">
 
-                <h2 class="pb-2  name-font" align="center">Де нас знайти?:</h2>
-                <p class="text-muted border-bottom" align="center"></p>
                 <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5">
                     <div class="col mb-3">
                         <span class="text-muted fs-5">Чернівці</span>

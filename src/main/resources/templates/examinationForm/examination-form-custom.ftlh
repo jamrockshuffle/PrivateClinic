@@ -101,7 +101,11 @@
             select.remove(i);
         }
 
-        select.options[select.options.length] = new Option("...", "...");
+        var optionDoctor = new Option("...", "");
+        optionDoctor.disabled = true;
+        optionDoctor.selected = true;
+
+        select.options[select.options.length] = optionDoctor;
         for(index in filteredDoctor) {
             select.options[select.options.length] = new Option(filteredDoctor[index], filteredDoctor[index]);
         }

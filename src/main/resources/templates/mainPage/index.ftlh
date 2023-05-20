@@ -208,7 +208,7 @@
 
             <hr style="height:1px;border-width:0;background-color:black;width:95.8%; margin: auto">
 
-            <div class="container  col-xxl-8 px-4 py-5 ">
+            <div class="container col-xxl-8 px-4 py-5 ">
                 <div class="row align-items-center g-lg-5 py-5">
                     <div class="col-lg-7 text-center text-lg-start">
                         <h1 class="display-5 fw-bold lh-1 mb-3">Бажаєте безкоштовну консультацію?</h1>

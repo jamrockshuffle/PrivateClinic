@@ -54,10 +54,7 @@ public class AuthFilter extends OncePerRequestFilter {
         if (cookie != null) {
             return cookie.getValue();
         } else {
-            var authHeader = request.getHeader("Authorization");
-            return StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")
-                    ? authHeader.substring(7)
-                    : null;
+            return request.getHeader("Authorization").substring(7);
         }
     }
 }

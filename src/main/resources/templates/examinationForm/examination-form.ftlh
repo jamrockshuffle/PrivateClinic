@@ -50,6 +50,7 @@
                             <label for="qualification" class="form-label">Напрямок</label>
                             <#--<@spring.formSingleSelect "examination.qualification", qualifications, "class='form-select' onmouseout='test()'"/>-->
                             <select id="qualification" name="qualification" class="form-select" onchange="fill(this);" required>
+                                <option selected disabled value="">...</option>
                             </select>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть напрямок
@@ -59,6 +60,7 @@
                         <div class="col-md-5">
                             <label for="doctor" class="form-label">Лікар</label>
                             <select id="doctor" name="doctor" class="form-select" required>
+                                <option selected disabled value="">...</option>
                             </select>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть лікаря
@@ -68,6 +70,7 @@
                         <div class="col-md-4">
                             <label for="qualificationPrice" class="form-label">Послуга</label>
                             <select id="qualificationPrice" name="qualificationPrice" class="form-select" required>
+                                <option selected disabled value="">...</option>
                             </select>
                             <div class="invalid-feedback">
                                 Будь ласка, виберіть послугу
@@ -101,7 +104,7 @@
     var qualification=[<#list qualifications as qualification>"${qualification.name}",</#list>]
 
     var selectQualification = document.getElementById("qualification");
-    selectQualification.options[selectQualification.options.length] = new Option("...", "...");
+    //selectQualification.options[selectQualification.options.length] = new Option("...", "...");
     for(index in qualification) {
         selectQualification.options[selectQualification.options.length] = new Option(qualification[index], index);
     }
@@ -123,7 +126,11 @@
             select.remove(i);
         }
 
-        select.options[select.options.length] = new Option("...", "...");
+        var optionDoctor = new Option("...", "");
+        optionDoctor.disabled = true;
+        optionDoctor.selected = true;
+
+        select.options[select.options.length] = optionDoctor;
         for(index in filteredDoctor) {
             select.options[select.options.length] = new Option(filteredDoctor[index], filteredDoctor[index]);
         }
@@ -142,7 +149,11 @@
             selectPrice.remove(j);
         }
 
-        selectPrice.options[selectPrice.options.length] = new Option("...", "...");
+        var optionPrice = new Option("...", "");
+        optionPrice.disabled = true;
+        optionPrice.selected = true;
+
+        selectPrice.options[selectPrice.options.length] = optionPrice;
         for(index in filteredPrice) {
             selectPrice.options[selectPrice.options.length] = new Option(filteredPrice[index], filteredPrice[index]);
         }

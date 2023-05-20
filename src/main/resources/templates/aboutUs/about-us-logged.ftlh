@@ -94,22 +94,10 @@
 
             <div class="jumbotronCustom">
 
-                <!--<section class="py-5 text-center container">
-                  <div class="row ">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                      <h1 class="fw-bold displayCustom">ПРО НАС</h1>
-                    </div>
-                  </div>
-                </section>-->
-
-                <div style="margin-left: 100px;"> <!--class="px-4 py-5"-->
+                <div style="margin-left: 100px;">
                     <div class="containerHeader my-5">
                         <div class="row  align-items-center ">
                             <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                                <!--<h1 class="display-4 fw-bold lh-1">Надійність та досягнення</h1>
-                                <p class="lead text-muted-custom">Для нас завжди були важливими комфорт та якість лікування наших пацієнтів, тому
-                                  клініка Solus Solutions отримала міжнародний стандарт якості ДСТУ ISO-9001,
-                                  що тільки закріпляє нас як кращих у своїй справі.</p>-->
                                 <h1 class="display-4 fw-bold lh-1">Якість, гарантія, [...]</h1>
                                 <p class="lead text-muted-custom">Заснована у 2015 у Чернівцях,
                                     Solus Solutions швидко стала провідною по всій області. Ми пропонуємо широкий спектр послуг,
@@ -126,6 +114,21 @@
                 <a name="we-offer"></a>
 
             </div>
+
+            <div class="jumbotronCustom">
+                <div style="margin-left: 100px;"> <!--class="px-4 py-5"-->
+                    <div class="containerHeader my-5">
+                        <div class="row  align-items-center ">
+                            <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                                <h1 class="display-4 fw-bold lh-1">МРТ</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a name="we-offer"></a>
+            </div>
+
 
 
             <div class="containerService px-4 py-5">

@@ -45,6 +45,11 @@
         font-family: Montserrat, "Open Sans", Helvetica, Arial, sans-serif;
     }
 
+    .modal-font {
+        font-weight: 200;
+        font-family: Montserrat, "Open Sans", Helvetica, Arial, sans-serif;
+    }
+
 
     .dangerCustom {
         color: #fff;
