@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Продовжити...</title>
 
-    <#include "../a-assets/styles/bootstrap5.ftlh">
-    <#include "../a-assets/styles/bootstrap.ftlh">
+    <#include "../../a-assets/styles/bootstrap5.ftlh">
+    <#include "../../a-assets/styles/bootstrap.ftlh">
 
     <style>
         html,

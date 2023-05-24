@@ -1,5 +1,7 @@
 package com.kj.clinic.security;
 
+import com.kj.clinic.model.Patients;
+import com.kj.clinic.repository.PatientsRepo;
 import com.kj.clinic.security.dto.LoginRequest;
 import com.kj.clinic.security.dto.LoginResponse;
 import com.kj.clinic.security.dto.SignUpRequest;
@@ -29,6 +31,7 @@ public class AuthService {
     private final JwtUtils jwtUtils;
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
+    private final PatientsRepo patientsRepo;
 
     public LoginResponse authenticateRequest(LoginRequest request) {
         var auth = authenticationManager.authenticate(
@@ -97,6 +100,24 @@ public class AuthService {
         userRepository.save(user);
 
         return "User was successfully created";
+    }
+
+    public String changeUsername(String oldUsername, String newUsername) {
+
+        User user = userRepository.findByUsername(oldUsername).get();
+        user.setUsername(newUsername);
+
+        Patients patient = patientsRepo.findAll().stream()
+                .filter(item -> item.getUsername()
+                        .equals(oldUsername))
+                .findFirst()
+                .orElse(null);
+        patient.setUsername(newUsername);
+
+        patientsRepo.save(patient);
+        userRepository.save(user);
+
+        return "Username " + oldUsername + " updated: new one is " + newUsername;
     }
 
 

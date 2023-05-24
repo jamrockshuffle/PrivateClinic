@@ -132,11 +132,9 @@ public class AuthUIController {
             // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
             Cookie cookie = new Cookie("tkn", response.getJwt());
-            cookie.setMaxAge(604800);
-
             servletResponse.addCookie(cookie);
 
-            return "goBack/goBackByThree";
+            return "account/signUp/sign-up-continue";
         }
     }
 
@@ -144,7 +142,9 @@ public class AuthUIController {
     public String logIn(Model model,
                         SecurityContextHolderAwareRequestWrapper requestWrapper,
                         HttpServletRequest servletRequest,
-                        @RequestParam(required = false) String authsuccess){
+                        @RequestParam(required = false) String authsuccess,
+                        @RequestParam(required = false) String newUsername,
+                        final RedirectAttributes redirectAttributes){
 
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/";
@@ -154,6 +154,15 @@ public class AuthUIController {
             request.setPassword("");
 
             model.addAttribute("request", request);
+
+            if (newUsername != null) {
+                redirectAttributes.addFlashAttribute("newUsername", newUsername);
+                model.addAttribute("newUsername", newUsername);
+            } else {
+                redirectAttributes.addFlashAttribute("newUsername", "");
+                model.addAttribute("newUsername", "");
+            }
+
             if (authsuccess != null) {
                 return "account/logIn/log-in-username-exists";
             } else {
@@ -165,7 +174,9 @@ public class AuthUIController {
     @PostMapping("/logIn")
     public String logIn(Model model,
                           @ModelAttribute("request") LoginRequest request,
-                        HttpServletResponse servletResponse){
+                        @ModelAttribute("newUsername") String newUsername,
+                        HttpServletResponse servletResponse,
+                        @RequestParam(required = false) String rememberMe){
 
         if (service.checkValidity(request)) {
                 LoginResponse response = service.authenticateRequest(request);
@@ -173,12 +184,15 @@ public class AuthUIController {
                 //secure httponly samesite=strict
                 // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
-                Cookie cookie = new Cookie("tkn", response.getJwt());
-                cookie.setMaxAge(604800);
-
-                servletResponse.addCookie(cookie);
-
-                return "goBack/goBackByTwo";
+                if (rememberMe != null) {
+                    Cookie cookie = new Cookie("tkn", response.getJwt());
+                    cookie.setMaxAge(604800);
+                    servletResponse.addCookie(cookie);
+                } else {
+                    Cookie cookie = new Cookie("tkn", response.getJwt());
+                    servletResponse.addCookie(cookie);
+                }
+                if (newUsername.equals("")) return "goBack/goBackByTwo"; else return "redirect:/cabinet";
             } else {
                 return "redirect:/logIn?authsuccess=false";
             }
@@ -212,44 +226,4 @@ public class AuthUIController {
 
         return "redirect:/logOut";
     }
-
-    /*@PostMapping("/login")
-    public String logIn(Model model,
-                        @ModelAttribute("request") LoginRequest request,
-                        final RedirectAttributes redirectAttributes){
-
-        LoginResponse response = service.authenticateRequest(request);
-
-        ResponseEntity.ok(response);
-
-        redirectAttributes.addFlashAttribute("response", response);
-
-        return "redirect:/process";
-    }
-
-
-    @GetMapping("/process")
-    public String process(Model model,
-                          @ModelAttribute("response") LoginResponse response,
-                          final RedirectAttributes redirectAttributes,
-                          HttpServletResponse servletResponse){
-
-        Cookie cookie = new Cookie("tkn", response.getJwt());
-
-        servletResponse.addCookie(cookie);
-
-        //servletResponse.addHeader("Set-Cookie", "tkn=" + response.getJwt() + ";");
-        // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
-
-        return "process";
-    }
-
-    @PostMapping("/process")
-    public String process(Model model,
-                          @ModelAttribute("response") LoginResponse response,
-                          HttpServletResponse servletResponse){
-
-        return "redirect:/";
-    }*/
-
 }

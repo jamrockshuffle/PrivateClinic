@@ -32,7 +32,7 @@
         <p class="fs-6 body-font">Немає акаунту? <a href="/signUp" class="fw-bold" style="color: #0f4696">Створити</a></p>
 
         <div class="form-floating">
-            <input type="text" class="form-control" title="Невірне ім'я користувача або пароль"  id="username" name="username" placeholder="login name">
+            <input type="text" value="${newUsername}" autocomplete="on" class="form-control" title="Невірне ім'я користувача або пароль"  id="username" name="username" placeholder="login name">
             <label for="username">Ім'я користувача</label>
         </div>
         <br>
@@ -40,6 +40,12 @@
         <div class="form-floating">
             <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             <label for="password">Пароль</label>
+        </div>
+
+        <div class="checkbox mb-3 body-font">
+            <label>
+                <input type="checkbox" value="rememberMe" name="rememberMe" id="rememberMe"> Запам'ятати мене
+            </label>
         </div>
 
         <button class="w-100 btn btn-lg dangerCustom" type="submit" id="login">Увійти</button>
