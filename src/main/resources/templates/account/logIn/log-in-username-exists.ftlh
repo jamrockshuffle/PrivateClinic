@@ -46,7 +46,7 @@
         <p class="fs-6 body-font">Немає акаунту? <a href="/signUp" class="fw-bold" style="color: #0f4696">Створити</a></p>
 
         <div class="form-floating">
-            <input type="text" value="${newUsername}" autocomplete="on"  class="form-control" title="Невірне ім'я користувача або пароль"  id="username" name="username" placeholder="login name">
+            <input type="text" autocomplete="on" class="form-control" id="username" name="username" placeholder="login name">
             <label for="username">Ім'я користувача</label>
         </div>
         <br>

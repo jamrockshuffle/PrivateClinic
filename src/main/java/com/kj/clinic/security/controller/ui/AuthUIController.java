@@ -11,13 +11,10 @@
 package com.kj.clinic.security.controller.ui;
 
 import com.kj.clinic.model.Illnesses;
-import com.kj.clinic.model.Patients;
 import com.kj.clinic.repository.IllnessesRepo;
 import com.kj.clinic.security.AuthService;
-import com.kj.clinic.security.UserDetailsImpl;
 import com.kj.clinic.security.dto.LoginRequest;
 import com.kj.clinic.security.dto.LoginResponse;
-import com.kj.clinic.security.dto.SignUpRequest;
 import com.kj.clinic.security.dto.SignUpRequestNoLogin;
 import com.kj.clinic.security.model.User;
 import com.kj.clinic.security.repository.UserRepository;
@@ -25,25 +22,17 @@ import com.kj.clinic.services.dto.SignUpForm;
 import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
 import com.kj.clinic.services.service.patients.PatientsServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -143,7 +132,7 @@ public class AuthUIController {
                         SecurityContextHolderAwareRequestWrapper requestWrapper,
                         HttpServletRequest servletRequest,
                         @RequestParam(required = false) String authsuccess,
-                        @RequestParam(required = false) String newUsername,
+                        @RequestParam(required = false) String paramUsername,
                         final RedirectAttributes redirectAttributes){
 
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
@@ -155,12 +144,12 @@ public class AuthUIController {
 
             model.addAttribute("request", request);
 
-            if (newUsername != null) {
-                redirectAttributes.addFlashAttribute("newUsername", newUsername);
-                model.addAttribute("newUsername", newUsername);
+            if (paramUsername != null) {
+                redirectAttributes.addFlashAttribute("paramUsername", paramUsername);
+                model.addAttribute("paramUsername", paramUsername);
             } else {
-                redirectAttributes.addFlashAttribute("newUsername", "");
-                model.addAttribute("newUsername", "");
+                redirectAttributes.addFlashAttribute("paramUsername", "");
+                model.addAttribute("paramUsername", "");
             }
 
             if (authsuccess != null) {
@@ -174,7 +163,7 @@ public class AuthUIController {
     @PostMapping("/logIn")
     public String logIn(Model model,
                           @ModelAttribute("request") LoginRequest request,
-                        @ModelAttribute("newUsername") String newUsername,
+                        @ModelAttribute("paramUsername") String paramUsername,
                         HttpServletResponse servletResponse,
                         @RequestParam(required = false) String rememberMe){
 
@@ -192,7 +181,12 @@ public class AuthUIController {
                     Cookie cookie = new Cookie("tkn", response.getJwt());
                     servletResponse.addCookie(cookie);
                 }
-                if (newUsername.equals("")) return "goBack/goBackByTwo"; else return "redirect:/cabinet";
+
+                if (paramUsername.equals("")) {
+                    return "goBack/goBackByTwo";
+                } else {
+                    return "redirect:/cabinet";
+                }
             } else {
                 return "redirect:/logIn?authsuccess=false";
             }

@@ -121,6 +121,17 @@ public class AuthService {
     }
 
 
+    public String changePassword(String username, String newPassword) {
+
+        User user = userRepository.findByUsername(username).get();
+        user.setPassword(encoder.encode(newPassword));
+
+        userRepository.save(user);
+
+        return "Password changed";
+    }
+
+
     private Set<Role> mapRoles(SignUpRequest request) {
         return request.getRoles()
                 .stream()

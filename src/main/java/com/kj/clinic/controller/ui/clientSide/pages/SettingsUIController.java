@@ -92,10 +92,58 @@ public class SettingsUIController {
                 return "redirect:/changeusername?exists=true";
             } else {
                 service.changeUsername(request.getUsername(), newUsername);
-                return "redirect:/logIn?newUsername="+newUsername;
+
+                Cookie cookie = new Cookie("tkn", null);
+                cookie.setMaxAge(0);
+                servletResponse.addCookie(cookie);
+
+                return "redirect:/logIn?paramUsername="+newUsername;
             }
         } else {
             return "redirect:/changeusername?authsuccess=false";
+        }
+    }
+
+    @GetMapping("/changepassword")
+    public String changePassword(Model model,
+                                 SecurityContextHolderAwareRequestWrapper requestWrapper,
+                                 HttpServletRequest servletRequest,
+                                 @RequestParam(required = false) String authsuccess){
+
+        if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
+
+            LoginRequest request = new LoginRequest();
+            request.setUsername(requestWrapper.getUserPrincipal().getName());
+            request.setPassword("");
+
+            model.addAttribute("request", request);
+
+            if (authsuccess != null) {
+                return "settings/changePassword/change-password-auth-fail";
+            } else {
+                return "settings/changePassword/change-password";
+            }
+
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @PostMapping("/changepassword")
+    public String changePassword(Model model,
+                                 @ModelAttribute("request") LoginRequest request,
+                                 HttpServletResponse servletResponse,
+                                 @RequestParam String newPassword){
+        if (service.checkValidity(request)) {
+                service.changePassword(request.getUsername(), newPassword);
+
+                Cookie cookie = new Cookie("tkn", null);
+                cookie.setMaxAge(0);
+                servletResponse.addCookie(cookie);
+
+            return "redirect:/logIn?paramUsername="+request.getUsername();
+        } else {
+            return "redirect:/changepassword?authsuccess=false";
         }
     }
 }

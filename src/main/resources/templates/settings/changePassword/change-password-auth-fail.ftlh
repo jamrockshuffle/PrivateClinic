@@ -10,6 +10,27 @@
 </head>
 <body class="bg-info body-font">
 
+<div class="text-left modal-font">
+    <a type="" data-bs-toggle="modal" data-bs-target="#staticBackdrop" hidden="hidden" id="modalButton">Надіслати</a>
+
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Старий пароль неправильний</h1>
+                </div>
+                <div class="modal-body">
+                    Будь ласка, повторіть спробу!
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" data-bs-dismiss="modal">Далі</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <div class="container">
     <main>
@@ -82,6 +103,8 @@
 
 
 <script>
+
+    document.getElementById("modalButton").click();
 
     var password = document.getElementById("newPassword");
     var repeatPassword = document.getElementById("repeatpass");
