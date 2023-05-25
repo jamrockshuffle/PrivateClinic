@@ -13,6 +13,8 @@ package com.kj.clinic.security.controller.ui;
 import com.kj.clinic.model.Illnesses;
 import com.kj.clinic.repository.IllnessesRepo;
 import com.kj.clinic.security.AuthService;
+import com.kj.clinic.security.bruteForce.GetClientIP;
+import com.kj.clinic.security.bruteForce.LoginAttemptService;
 import com.kj.clinic.security.dto.LoginRequest;
 import com.kj.clinic.security.dto.LoginResponse;
 import com.kj.clinic.security.dto.SignUpRequestNoLogin;
@@ -45,6 +47,7 @@ public class AuthUIController {
     private final PatientsServiceImpl patientsService;
     private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
+    private final LoginAttemptService loginAttemptService;
 
 
     @GetMapping("/signUp")
@@ -135,27 +138,31 @@ public class AuthUIController {
                         @RequestParam(required = false) String paramUsername,
                         final RedirectAttributes redirectAttributes){
 
-        if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/";
+        if (loginAttemptService.isBLocked(GetClientIP.getClientIP(servletRequest))) {
+            return "account/logIn/log-in-ip-blocked";
         } else {
-            LoginRequest request = new LoginRequest();
-            request.setUsername("");
-            request.setPassword("");
-
-            model.addAttribute("request", request);
-
-            if (paramUsername != null) {
-                redirectAttributes.addFlashAttribute("paramUsername", paramUsername);
-                model.addAttribute("paramUsername", paramUsername);
+            if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
+                return "redirect:/";
             } else {
-                redirectAttributes.addFlashAttribute("paramUsername", "");
-                model.addAttribute("paramUsername", "");
-            }
+                LoginRequest request = new LoginRequest();
+                request.setUsername("");
+                request.setPassword("");
 
-            if (authsuccess != null) {
-                return "account/logIn/log-in-username-exists";
-            } else {
-                return "account/logIn/log-in";
+                model.addAttribute("request", request);
+
+                if (paramUsername != null) {
+                    redirectAttributes.addFlashAttribute("paramUsername", paramUsername);
+                    model.addAttribute("paramUsername", paramUsername);
+                } else {
+                    redirectAttributes.addFlashAttribute("paramUsername", "");
+                    model.addAttribute("paramUsername", "");
+                }
+
+                if (authsuccess != null) {
+                    return "account/logIn/log-in-username-exists";
+                } else {
+                    return "account/logIn/log-in";
+                }
             }
         }
     }
