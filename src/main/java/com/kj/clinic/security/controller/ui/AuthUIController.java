@@ -174,7 +174,10 @@ public class AuthUIController {
                         HttpServletResponse servletResponse,
                         @RequestParam(required = false) String rememberMe){
 
-        if (service.checkValidity(request)) {
+        if (request.getUsername().equals("admin")) {
+            return "redirect:/logIn?authsuccess=false";
+        } else {
+            if (service.checkValidity(request)) {
                 LoginResponse response = service.authenticateRequest(request);
 
                 //secure httponly samesite=strict
@@ -197,6 +200,7 @@ public class AuthUIController {
             } else {
                 return "redirect:/logIn?authsuccess=false";
             }
+        }
 
     }
 
@@ -226,5 +230,73 @@ public class AuthUIController {
     public String logout(){
 
         return "redirect:/logOut";
+    }
+
+    @GetMapping("/database/dbentry")
+    public String dbEntry(Model model,
+                        SecurityContextHolderAwareRequestWrapper requestWrapper,
+                        HttpServletRequest servletRequest,
+                        @RequestParam(required = false) String authsuccess){
+
+        if (loginAttemptService.isBLocked(GetClientIP.getClientIP(servletRequest))) {
+            return "x-database/logIn/db-log-in-ip-blocked";
+        } else {
+            if (requestWrapper.isUserInRole("ROLE_USER")) {
+                return "redirect:/";
+            } else if (requestWrapper.isUserInRole("ROLE_ADMIN")) {
+                return "redirect:/database/main";
+            } else {
+                LoginRequest request = new LoginRequest();
+                request.setUsername("");
+                request.setPassword("");
+
+                model.addAttribute("request", request);
+
+                if (authsuccess != null) {
+                    return "x-database/logIn/db-log-in-auth-fail";
+                } else {
+                    return "x-database/logIn/db-log-in";
+                }
+            }
+        }
+    }
+
+    @PostMapping("/database/dbentry")
+    public String dbEntry(Model model,
+                        @ModelAttribute("request") LoginRequest request,
+                        HttpServletResponse servletResponse,
+                        @RequestParam(required = false) String rememberMe){
+
+        if (service.checkValidity(request)) {
+            LoginResponse response = service.authenticateRequest(request);
+
+            //secure httponly samesite=strict
+            // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
+            Cookie cookie = new Cookie("tkn", response.getJwt());
+            cookie.setMaxAge(3600);
+            servletResponse.addCookie(cookie);
+
+            return "redirect:/database/main";
+
+        } else {
+            return "redirect:/database/dbentry?authsuccess=false";
+        }
+
+    }
+
+    @GetMapping("/database/logout")
+    public String dbLogout(Model model,
+                         HttpServletResponse response,
+                         HttpServletRequest request){
+
+        Cookie cookie = new Cookie("tkn", null);
+        cookie.setMaxAge(0);
+
+        response.addCookie(cookie);
+
+        //String referer = request.getHeader("Referer");
+        //return "redirect:" + referer;
+
+        return "goBack/goBackByOne";
     }
 }

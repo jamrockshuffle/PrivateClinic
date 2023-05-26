@@ -69,7 +69,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/cabinet",
                 "/settings",
                 "/changeusername",
-                "/changepassword").permitAll()
+                "/changepassword",
+                "/database/dbentry",
+                "/database/main",
+                "/database/*/find/all",
+                "/database/*/create",
+                "/database/*/update/*",
+                "/database/*/delete/*").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);

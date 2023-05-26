@@ -180,7 +180,7 @@
                                     <th scope="col">Лікар</th>
                                     <th scope="col">Послуга</th>
                                     <th scope="col">Час прийому</th>
-                                    <th scope="col">Ціна, грн</th>
+                                    <th scope="col">Ціна</th>
                                     <th scope="col">Оплата</th>
                                 </tr>
                                 </thead>
@@ -192,7 +192,7 @@
                                         <td>${examination.doctor.name}</td>
                                         <td>${examination.qualification.name}</td>
                                         <td>${examination.examinationTime}</td>
-                                        <td>${examination.price}</td>
+                                        <td>${examination.price} грн.</td>
                                         <td>
                                             <#if examination.status ??> <span style="margin-left: 10px">${examination.status}</span>
                                             <#else> <a href="/checkout/${examination.examinationId}" class="btn dangerCustom my-2 my-sm-2 ">

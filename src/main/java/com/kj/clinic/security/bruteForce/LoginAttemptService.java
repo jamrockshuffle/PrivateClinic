@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class LoginAttemptService {
 
-    private static final int MAXATTEMPT = 5;
+    private static final int maxAttempts = 5;
 
     private LoadingCache<String, Integer> attemptsCache;
 
@@ -39,7 +39,7 @@ public class LoginAttemptService {
     }
 
     public void loginFailed(String key) {
-        int attempts = 0;
+        int attempts;
         try {
             attempts = attemptsCache.get(key);
         } catch (ExecutionException e) {
@@ -51,7 +51,7 @@ public class LoginAttemptService {
 
     public boolean isBLocked(String key) {
         try {
-            return attemptsCache.get(key) >= MAXATTEMPT;
+            return attemptsCache.get(key) >= maxAttempts;
         } catch (ExecutionException e) {
             return false;
         }

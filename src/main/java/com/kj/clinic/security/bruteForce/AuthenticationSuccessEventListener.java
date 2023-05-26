@@ -38,14 +38,4 @@ public class AuthenticationSuccessEventListener implements ApplicationListener<A
 
         service.loginSucceeded(GetClientIP.getClientIP(request));
     }
-
-
-
-/*
-, AuthenticationSuccessHandler
-
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
-    }*/
 }

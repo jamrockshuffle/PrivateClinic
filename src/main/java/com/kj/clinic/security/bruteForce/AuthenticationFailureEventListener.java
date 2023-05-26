@@ -29,11 +29,7 @@ public class AuthenticationFailureEventListener implements ApplicationListener<A
     public void onApplicationEvent(AuthenticationFailureBadCredentialsEvent event) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
-        final String xfHeader = request.getHeader("X-Forwarded-For");
-        if (xfHeader == null || xfHeader.isEmpty() || !xfHeader.contains(request.getRemoteAddr())) {
-            service.loginFailed(request.getRemoteAddr());
-        } else {
-            service.loginFailed(xfHeader.split(",")[0]);
-        }
+        service.loginFailed(GetClientIP.getClientIP(request));
+
     }
 }
