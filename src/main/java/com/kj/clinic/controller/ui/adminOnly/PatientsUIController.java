@@ -3,14 +3,18 @@
  *  * Created by IntelliJ IDEA.
  *  *
  *  * @Author: Mykola Bidiuk
- *  * @Date: 26.05.23, 10:58
- *  * @Version: TableListUIController: 1.0
+ *  * @Date: 26.05.23, 14:43
+ *  * @Version: PatientsUIController: 1.0
  *
  */
 
 package com.kj.clinic.controller.ui.adminOnly;
 
-import com.kj.clinic.model.Examinations;
+import com.kj.clinic.model.Illnesses;
+import com.kj.clinic.model.Patients;
+import com.kj.clinic.services.service.illnesses.IllnessesServiceImpl;
+import com.kj.clinic.services.service.patients.PatientsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +22,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/database/")
+@RequestMapping("/database/patients")
 @Controller
-public class TableListUIController {
+public class PatientsUIController {
 
-    @RequestMapping("/main")
+    @Autowired
+    PatientsServiceImpl patientsService;
+
+    @RequestMapping("/find/all")
     public String findAll(Model model,
                           SecurityContextHolderAwareRequestWrapper requestWrapper){
 
         if (requestWrapper.isUserInRole("ROLE_ADMIN")) {
+            List<Patients> patients = patientsService.findAll();
+            model.addAttribute("patients", patients);
             model.addAttribute("username", requestWrapper.getUserPrincipal().getName());
-            return "x-database/table-list";
+
+            return "x-database/patients/patients-page";
         } else {
             return "redirect:/database/dbentry";
         }

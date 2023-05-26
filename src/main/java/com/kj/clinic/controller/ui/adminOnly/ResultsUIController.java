@@ -3,14 +3,18 @@
  *  * Created by IntelliJ IDEA.
  *  *
  *  * @Author: Mykola Bidiuk
- *  * @Date: 26.05.23, 10:58
- *  * @Version: TableListUIController: 1.0
+ *  * @Date: 26.05.23, 15:35
+ *  * @Version: ResultsUIController: 1.0
  *
  */
 
 package com.kj.clinic.controller.ui.adminOnly;
 
-import com.kj.clinic.model.Examinations;
+import com.kj.clinic.model.Qualification;
+import com.kj.clinic.model.Results;
+import com.kj.clinic.services.service.qualification.QualificationServiceImpl;
+import com.kj.clinic.services.service.results.ResultsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +22,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/database/")
+@RequestMapping("/database/results")
 @Controller
-public class TableListUIController {
+public class ResultsUIController {
 
-    @RequestMapping("/main")
+    @Autowired
+    ResultsServiceImpl resultsService;
+
+    @RequestMapping("/find/all")
     public String findAll(Model model,
                           SecurityContextHolderAwareRequestWrapper requestWrapper){
 
         if (requestWrapper.isUserInRole("ROLE_ADMIN")) {
+            List<Results> results = resultsService.findAll();
+            model.addAttribute("results", results);
             model.addAttribute("username", requestWrapper.getUserPrincipal().getName());
-            return "x-database/table-list";
+
+            return "x-database/results/results-page";
         } else {
             return "redirect:/database/dbentry";
         }
