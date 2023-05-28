@@ -15,27 +15,20 @@ import com.kj.clinic.repository.PatientsRepo;
 import com.kj.clinic.repository.PersonnelRepo;
 import com.kj.clinic.repository.QualificationPricesRepo;
 import com.kj.clinic.repository.QualificationRepo;
-import com.kj.clinic.security.dto.LoginRequest;
-import com.kj.clinic.security.dto.LoginResponse;
-import com.kj.clinic.security.dto.SignUpRequestNoLogin;
 import com.kj.clinic.services.dto.ExaminationForm;
-import com.kj.clinic.services.dto.SignUpForm;
 import com.kj.clinic.services.dto.examinations.ExaminationsDTOCreate;
-import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
 import com.kj.clinic.services.service.examinations.ExaminationsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class ExaminationFormUIController {
@@ -76,30 +69,30 @@ public class ExaminationFormUIController {
                                 SecurityContextHolderAwareRequestWrapper requestWrapper){
 
         if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
-            ExaminationForm examination = new ExaminationForm();
+                ExaminationForm examination = new ExaminationForm();
 
-            String fullName = this.getByUsername(requestWrapper.getUserPrincipal().getName()).getName();
-            String[] names = fullName.split(" ");
+                String fullName = this.getByUsername(requestWrapper.getUserPrincipal().getName()).getName();
+                String[] names = fullName.split(" ");
 
-            examination.setFirstName(names[0]);
-            examination.setLastName(names[1]);
-            examination.setQualification("");
-            examination.setDoctor("");
-            examination.setQualificationPrice("");
-            examination.setExaminationTime("");
+                examination.setFirstName(names[0]);
+                examination.setLastName(names[1]);
+                examination.setQualification("");
+                examination.setDoctor("");
+                examination.setQualificationPrice("");
+                examination.setExaminationTime("");
 
-            model.addAttribute("examination", examination);
+                model.addAttribute("examination", examination);
 
-            List<Qualification> qualifications = new ArrayList<>(qualificationRepo.findAll());
-            model.addAttribute("qualifications", qualifications);
+                List<Qualification> qualifications = new ArrayList<>(qualificationRepo.findAll());
+                model.addAttribute("qualifications", qualifications);
 
-            List<Personnel> doctors = new ArrayList<>(personnelRepo.findAll());
-            model.addAttribute("doctors", doctors);
+                List<Personnel> doctors = new ArrayList<>(personnelRepo.findAll());
+                model.addAttribute("doctors", doctors);
 
-            List<QualificationPrices> services = new ArrayList<>(qualificationPricesRepo.findAll());
-            model.addAttribute("services", services);
+                List<QualificationPrices> services = new ArrayList<>(qualificationPricesRepo.findAll());
+                model.addAttribute("services", services);
 
-            return "examinationForm/examination-form";
+                return "examinationForm/examination-form";
         } else {
             return "redirect:/logIn";
         }

@@ -45,8 +45,6 @@
         </ul>
 
         <form class="form-inline my-2 my-lg-0">
-            <a href="/database/examinations/create" class="btn btn-success">Create</a>
-            &nbsp;&nbsp;&nbsp;
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" style="font-size: 1.25rem;" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${username}</a>

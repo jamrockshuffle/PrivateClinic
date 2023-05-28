@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -42,5 +43,13 @@ public class QualificationPricesUIController {
         } else {
             return "redirect:/database/dbentry";
         }
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable String id){
+
+        qualificationPricesService.deleteById(id);
+
+        return "redirect:/database/qualificationPrices/find/all";
     }
 }

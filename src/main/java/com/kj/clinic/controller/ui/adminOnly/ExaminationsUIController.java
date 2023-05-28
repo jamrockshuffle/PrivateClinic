@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -42,5 +43,13 @@ public class ExaminationsUIController {
         } else {
             return "redirect:/database/dbentry";
         }
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(Model model, @PathVariable String id){
+
+        examinationsService.deleteById(id);
+
+        return "redirect:/database/examinations/find/all";
     }
 }
