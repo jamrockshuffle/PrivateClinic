@@ -23,4 +23,6 @@ public interface IQualificationPricesService {
     List<QualificationPrices> deleteById (String id);
     QualificationPrices create (QualificationPricesDTOCreate dtoObj);
     QualificationPrices update (QualificationPricesDTOUpdate dtoObj);
+    QualificationPrices createUI (QualificationPricesDTOCreate dtoObj);
+    QualificationPrices updateUI (QualificationPricesDTOUpdate dtoObj);
 }

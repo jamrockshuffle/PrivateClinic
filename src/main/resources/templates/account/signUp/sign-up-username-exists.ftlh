@@ -154,7 +154,7 @@
     var option = new Option("...", "");
     option.disabled = true;
     option.selected = true;
-    selectIllness.options[selectIllness.options.length] = option;
+    selectIllness.insertBefore(option, selectIllness.firstChild);
 
     var password = document.getElementById("password");
     var repeatPassword = document.getElementById("repeatpass");

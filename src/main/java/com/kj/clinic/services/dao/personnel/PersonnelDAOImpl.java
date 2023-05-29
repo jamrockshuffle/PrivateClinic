@@ -12,6 +12,7 @@ package com.kj.clinic.services.dao.personnel;
 
 import com.kj.clinic.model.Personnel;
 import com.kj.clinic.model.PersonnelCategory;
+import com.kj.clinic.model.Qualification;
 import com.kj.clinic.repository.PersonnelCategoryRepo;
 import com.kj.clinic.repository.PersonnelRepo;
 import com.kj.clinic.repository.QualificationRepo;
@@ -33,6 +34,22 @@ public class PersonnelDAOImpl implements IPersonnelDAO{
 
     @Autowired
     QualificationRepo qualificationRepo;
+
+    public Qualification getByQualification(String name) {
+        return qualificationRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public PersonnelCategory getByCategory(String name) {
+        return personnelCategoryRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Override
     public List<Personnel> findAll() {
@@ -75,7 +92,34 @@ public class PersonnelDAOImpl implements IPersonnelDAO{
         obj.setPersonnelCategory(personnelCategoryRepo.findById(dtoObj.getPersonnelCategory()).get());
 
         personnelRepo.save(obj);
+        return obj;
+    }
 
+    @Override
+    public Personnel createUI(PersonnelDTOCreate dtoObj) {
+        String id = String.valueOf(this.findAll()
+                .stream()
+                .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
+
+        Personnel obj = new Personnel();
+        obj.setId(id);
+        obj.setName(dtoObj.getName());
+        obj.setQualification(getByQualification(dtoObj.getQualification()));
+        obj.setPersonnelCategory(getByCategory(dtoObj.getPersonnelCategory()));
+
+        personnelRepo.save(obj);
+        return obj;
+    }
+
+    @Override
+    public Personnel updateUI(PersonnelDTOUpdate dtoObj) {
+        Personnel obj = new Personnel();
+        obj.setId(personnelRepo.findById(dtoObj.getId()).get().getId());
+        obj.setName(dtoObj.getName());
+        obj.setQualification(getByQualification(dtoObj.getQualification()));
+        obj.setPersonnelCategory(getByCategory(dtoObj.getPersonnelCategory()));
+
+        personnelRepo.save(obj);
         return obj;
     }
 }

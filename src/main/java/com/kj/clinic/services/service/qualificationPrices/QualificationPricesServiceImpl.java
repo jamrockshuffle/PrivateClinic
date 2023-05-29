@@ -52,4 +52,14 @@ public class QualificationPricesServiceImpl implements IQualificationPricesServi
     public QualificationPrices update(QualificationPricesDTOUpdate dtoObj) {
         return dao.update(dtoObj);
     }
+
+    @Override
+    public QualificationPrices createUI(QualificationPricesDTOCreate dtoObj) {
+        return dao.createUI(dtoObj);
+    }
+
+    @Override
+    public QualificationPrices updateUI(QualificationPricesDTOUpdate dtoObj) {
+        return dao.updateUI(dtoObj);
+    }
 }

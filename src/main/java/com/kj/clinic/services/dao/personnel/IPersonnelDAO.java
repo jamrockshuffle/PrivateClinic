@@ -22,4 +22,6 @@ public interface IPersonnelDAO {
     List<Personnel> deleteById (String id);
     Personnel create (PersonnelDTOCreate dtoObj);
     Personnel update (PersonnelDTOUpdate dtoObj);
+    Personnel createUI (PersonnelDTOCreate dtoObj);
+    Personnel updateUI (PersonnelDTOUpdate dtoObj);
 }

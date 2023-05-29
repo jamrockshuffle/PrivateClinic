@@ -11,6 +11,7 @@
 package com.kj.clinic.services.dao.qualificationPrices;
 
 import com.kj.clinic.model.Illnesses;
+import com.kj.clinic.model.Qualification;
 import com.kj.clinic.model.QualificationPrices;
 import com.kj.clinic.repository.QualificationPricesRepo;
 import com.kj.clinic.repository.QualificationRepo;
@@ -32,6 +33,14 @@ public class QualificationPricesDAOImpl implements IQualificationPricesDAO{
 
     @Autowired
     QualificationRepo qualificationRepo;
+
+    public Qualification getByQualification(String name) {
+        return qualificationRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Override
     public List<QualificationPrices> findAll() {
@@ -72,6 +81,36 @@ public class QualificationPricesDAOImpl implements IQualificationPricesDAO{
         obj.setId(qualificationPricesRepo.findById(dtoObj.getId()).get().getId());
         obj.setName(dtoObj.getName());
         obj.setQualification(qualificationRepo.findById(dtoObj.getQualification()).get());
+        obj.setPrice(new BigDecimal(dtoObj.getPrice()));
+
+        qualificationPricesRepo.save(obj);
+
+        return obj;
+    }
+
+    @Override
+    public QualificationPrices createUI(QualificationPricesDTOCreate dtoObj) {
+        String id = String.valueOf(this.findAll()
+                .stream()
+                .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
+
+        QualificationPrices obj = new QualificationPrices();
+        obj.setId(id);
+        obj.setName(dtoObj.getName());
+        obj.setQualification(getByQualification(dtoObj.getQualification()));
+        obj.setPrice(new BigDecimal(dtoObj.getPrice()));
+
+        qualificationPricesRepo.save(obj);
+        return obj;
+    }
+
+    @Override
+    public QualificationPrices updateUI(QualificationPricesDTOUpdate dtoObj) {
+
+        QualificationPrices obj = new QualificationPrices();
+        obj.setId(qualificationPricesRepo.findById(dtoObj.getId()).get().getId());
+        obj.setName(dtoObj.getName());
+        obj.setQualification(getByQualification(dtoObj.getQualification()));
         obj.setPrice(new BigDecimal(dtoObj.getPrice()));
 
         qualificationPricesRepo.save(obj);

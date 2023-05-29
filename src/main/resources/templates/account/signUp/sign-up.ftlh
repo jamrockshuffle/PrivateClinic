@@ -102,7 +102,7 @@
 
                         <div class="col-md-3">
                             <label for="illnesses" class="form-label">Хронічні захворювання</label>
-                            <@spring.formSingleSelect "request.illnesses", illnesses, "class='form-select'"/>
+                            <@spring.formSingleSelect "request.illnesses", illnesses, "class='form-select' required"/>
                             <div class="invalid-feedback">
                                 Будь ласка, заповніть це поле
                             </div>
@@ -129,7 +129,7 @@
     var option = new Option("...", "");
     option.disabled = true;
     option.selected = true;
-    selectIllness.options[selectIllness.options.length] = option;
+    selectIllness.insertBefore(option, selectIllness.firstChild);
 
     var password = document.getElementById("password");
     var repeatPassword = document.getElementById("repeatpass");

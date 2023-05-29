@@ -49,4 +49,14 @@ public class PersonnelServiceImpl implements IPersonnelService {
     public Personnel update(PersonnelDTOUpdate dtoObj) {
         return dao.update(dtoObj);
     }
+
+    @Override
+    public Personnel createUI(PersonnelDTOCreate dtoObj) {
+        return dao.createUI(dtoObj);
+    }
+
+    @Override
+    public Personnel updateUI(PersonnelDTOUpdate dtoObj) {
+        return dao.updateUI(dtoObj);
+    }
 }

@@ -15,6 +15,8 @@ import com.kj.clinic.model.Patients;
 import com.kj.clinic.model.Personnel;
 import com.kj.clinic.repository.IllnessesRepo;
 import com.kj.clinic.repository.PatientsRepo;
+import com.kj.clinic.security.model.User;
+import com.kj.clinic.security.repository.UserRepository;
 import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
 import com.kj.clinic.services.dto.patients.PatientsDTOUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,18 @@ public class PatientsDAOImpl implements IPatientsDAO{
 
     @Autowired
     IllnessesRepo illnessesRepo;
+
+    @Autowired
+    UserRepository userRepository;
+
+    public Illnesses getByIllness(String illness) {
+
+        return illnessesRepo.findAll().stream()
+                .filter(item -> item.getName()
+                        .equals(illness))
+                .findFirst()
+                .orElse(null);
+    }
 
     @Override
     public List<Patients> findAll() {
@@ -112,12 +126,7 @@ public class PatientsDAOImpl implements IPatientsDAO{
         obj.setBirthday(LocalDate.parse(dtoObj.getBirthday()));
         obj.setPhone(dtoObj.getPhone());
         obj.setEmail(dtoObj.getEmail());
-
-        if (dtoObj.getIllnesses().equals("...")) {
-            obj.setIllnesses(this.getByIllness("Немає"));
-        } else {
-            obj.setIllnesses(this.getByIllness(dtoObj.getIllnesses()));
-        }
+        obj.setIllnesses(this.getByIllness(dtoObj.getIllnesses()));
 
         switch (dtoObj.getIllnesses()) {
             case "Хронічні" -> obj.setCategory("II");
@@ -131,12 +140,26 @@ public class PatientsDAOImpl implements IPatientsDAO{
         return obj;
     }
 
-    public Illnesses getByIllness(String illness) {
+    @Override
+    public Patients updateUI(PatientsDTOUpdate dtoObj) {
 
-        return illnessesRepo.findAll().stream()
-                .filter(item -> item.getName()
-                        .equals(illness))
-                .findFirst()
-                .orElse(null);
+        Patients obj = new Patients();
+        obj.setId(repository.findById(dtoObj.getId()).get().getId());
+        obj.setName(dtoObj.getName());
+        obj.setBirthday(LocalDate.parse(dtoObj.getBirthday()));
+        obj.setPhone(dtoObj.getPhone());
+        obj.setEmail(dtoObj.getEmail());
+        obj.setIllnesses(this.getByIllness(dtoObj.getIllnesses()));
+
+        switch (dtoObj.getIllnesses()) {
+            case "Хронічні" -> obj.setCategory("II");
+            case "Інвалідність" -> obj.setCategory("III");
+            default -> obj.setCategory("I");
+        }
+
+        obj.setUsername(dtoObj.getUsername());
+
+        repository.save(obj);
+        return obj;
     }
 }
