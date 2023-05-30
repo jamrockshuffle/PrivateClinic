@@ -37,7 +37,7 @@
 <div class="container">
     <main>
         <div class="py-5 text-center">
-            <img class="d-block mx-auto mb-4" src="/assets/logo-cropped.png" alt="" width="100px" height="100px">
+            <a href="/"><img class="d-block mx-auto mb-4" src="/assets/logo-cropped.png" alt="" width="100px" height="100px"></a>
             <h2>Створіть новий акаунт</h2>
             <p class="fs-5">Вже є акаунт? <a href="/logIn" class="fw-bold" style="color: #0f4696">Увійти</a></p>
         </div>

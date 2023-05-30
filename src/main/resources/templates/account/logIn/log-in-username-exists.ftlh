@@ -41,7 +41,7 @@
 
 <main class="form-signin w-100 m-auto">
     <form class="" name="login" action="" method="post">
-        <img class="mb-4" src="/assets/logo-cropped.png" alt="" width="100px" height="100px">
+        <a href="/"><img class="d-block mx-auto mb-4" src="/assets/logo-cropped.png" alt="" width="100px" height="100px"></a>
         <h1 class="h3 mb-3 fw-normal body-font">Увійдіть в акаунт</h1>
         <p class="fs-6 body-font">Немає акаунту? <a href="/signUp" class="fw-bold" style="color: #0f4696">Створити</a></p>
 
