@@ -35,6 +35,7 @@ public class ExaminationsDTOUpdate {
     private String qualification;
     private String examinationTime;
     private String price;
+    private String status;
 
     public ExaminationsDTOUpdate() {
     }
@@ -47,6 +48,17 @@ public class ExaminationsDTOUpdate {
         this.qualification = qualification;
         this.examinationTime = examinationTime;
         this.price = price;
+    }
+
+    public ExaminationsDTOUpdate(String id, String examinationId, String patient, String doctor, String qualification, String examinationTime, String price, String status) {
+        this.id = id;
+        this.examinationId = examinationId;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.qualification = qualification;
+        this.examinationTime = examinationTime;
+        this.price = price;
+        this.status = status;
     }
 
     public String getId() {
@@ -103,5 +115,13 @@ public class ExaminationsDTOUpdate {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

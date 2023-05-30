@@ -23,4 +23,5 @@ public interface IExaminationsService {
     Examinations create (ExaminationsDTOCreate dtoObj);
     Examinations update (ExaminationsDTOUpdate dtoObj);
     Examinations createUI (ExaminationsDTOCreate dtoObj);
+    Examinations updateUI (ExaminationsDTOUpdate dtoObj);
 }

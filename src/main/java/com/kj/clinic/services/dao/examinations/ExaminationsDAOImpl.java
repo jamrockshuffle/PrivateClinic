@@ -197,4 +197,44 @@ public class ExaminationsDAOImpl implements IExaminationsDAO{
         examinationsRepo.save(obj);
         return obj;
     }
+
+    @Override
+    public Examinations updateUI(ExaminationsDTOUpdate dtoObj) {
+
+        Examinations obj = new Examinations();
+
+        obj.setId(examinationsRepo.findById(dtoObj.getId()).get().getId());
+
+        obj.setExaminationId(dtoObj.getExaminationId());
+
+        obj.setPatient(patientsRepo.findById(dtoObj.getPatient()).get());
+        obj.setDoctor(this.getByName(dtoObj.getDoctor()));
+        obj.setQualification(this.getByQPrice(dtoObj.getQualification()));
+        obj.setExaminationTime(LocalDateTime.parse(dtoObj.getExaminationTime()));
+
+        BigDecimal patientDiscount;
+        BigDecimal doctorPrice;
+
+        switch (patientsRepo.findById(dtoObj.getPatient()).get().getCategory()) {
+            case "II" -> patientDiscount = BigDecimal.valueOf(0.7);
+            case "III" -> patientDiscount = BigDecimal.valueOf(0.5);
+            default -> patientDiscount = BigDecimal.valueOf(1);
+        }
+
+        switch (this.getByName(dtoObj.getDoctor()).getPersonnelCategory().getName()) {
+            case "II" -> doctorPrice = BigDecimal.valueOf(1.5);
+            case "III" -> doctorPrice = BigDecimal.valueOf(2.0);
+            default -> doctorPrice = BigDecimal.valueOf(1);
+        }
+
+        BigDecimal finalPrice = this.getByQPrice(dtoObj.getQualification()).getPrice()
+                .multiply(patientDiscount)
+                .multiply(doctorPrice);
+
+        obj.setPrice(finalPrice);
+        obj.setStatus(dtoObj.getStatus());
+
+        examinationsRepo.save(obj);
+        return obj;
+    }
 }

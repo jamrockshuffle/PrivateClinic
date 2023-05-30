@@ -84,7 +84,6 @@ public class PatientsUIController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update/{id}")
     public String update(Model model, @PathVariable String id,
-                         @RequestParam(required = false) String exists,
                          final RedirectAttributes redirectAttributes){
 
         PatientsForm patientsForm = new PatientsForm();
@@ -110,11 +109,7 @@ public class PatientsUIController {
         model.addAttribute("illnesses", illnesses);
         redirectAttributes.addFlashAttribute("username", patientsForm.getUsername());
 
-        if (exists != null) {
-            return "x-database/patients/patients-update-username-exists";
-        } else {
-            return "x-database/patients/patients-update";
-        }
+        return "x-database/patients/patients-update";
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -123,15 +118,6 @@ public class PatientsUIController {
                          @ModelAttribute("patients") PatientsForm patientsForm,
                          @ModelAttribute("username") String username,
                          @PathVariable String id){
-
-        List<String> usernames = userRepository.findAll()
-                .stream()
-                .map(User::getUsername)
-                .collect(Collectors.toList());
-
-        if(usernames.contains(patientsForm.getUsername()) && !patientsForm.getUsername().equals(username)) {
-            return "redirect:/database/patients/update/" + patientsForm.getId() + "?exists=true";
-        } else {
 
             PatientsDTOUpdate patientsDTOUpdate = new PatientsDTOUpdate();
             patientsDTOUpdate.setId(patientsForm.getId());
@@ -145,6 +131,5 @@ public class PatientsUIController {
             patientsService.updateUI(patientsDTOUpdate);
 
             return "redirect:/database/patients/find/all";
-        }
     }
 }

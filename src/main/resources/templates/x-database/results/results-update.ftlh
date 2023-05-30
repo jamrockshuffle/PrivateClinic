@@ -75,7 +75,7 @@
                             <div class="input-group has-validation">
                                 <@spring.formInput "results.examinationId" "class='form-control' required" "text"/>
                                 <div class="invalid-feedback">
-                                    Будь ласка, введіть назву напрямку
+                                    Будь ласка, введіть номер
                                 </div>
                             </div>
                         </div>
