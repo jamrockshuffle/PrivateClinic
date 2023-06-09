@@ -30,6 +30,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/auth")
 @SessionScope
 @RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")
 public class AuthController {
     private final AuthService service;
 

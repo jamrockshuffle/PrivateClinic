@@ -71,6 +71,7 @@ public class PatientsUIController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable String id){
 

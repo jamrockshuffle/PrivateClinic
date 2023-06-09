@@ -4,6 +4,7 @@ import com.kj.clinic.security.AuthEntryPoint;
 import com.kj.clinic.security.UserDetailsServiceImpl;
 import com.kj.clinic.security.filter.AuthFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -23,13 +24,21 @@ import javax.servlet.http.HttpServletRequest;
 
 @EnableWebSecurity
 @Configuration
-@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final PasswordEncoder passwordEncoder;
-    private final UserDetailsServiceImpl userDetailsService;
-    private final AuthEntryPoint unauthorizedHandler;
-    private final AuthFilter authFilter;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    AuthEntryPoint unauthorizedHandler;
+
+    @Autowired
+    AuthFilter authFilter;
+
 
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {

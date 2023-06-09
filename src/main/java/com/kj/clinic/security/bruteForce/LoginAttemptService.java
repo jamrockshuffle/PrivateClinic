@@ -21,12 +21,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class LoginAttemptService {
 
-    private static final int maxAttempts = 5;
+    private static final int attemptsBeforeBlock = 5;
 
-    private LoadingCache<String, Integer> attemptsCache;
+    private LoadingCache<String, Integer> cachedAttempts;
 
     public LoginAttemptService() {
-        attemptsCache = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.MINUTES)
+        cachedAttempts = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.MINUTES)
                 .build(new CacheLoader<String, Integer>() {
                     public Integer load(String key) {
                         return 0;
@@ -35,23 +35,23 @@ public class LoginAttemptService {
     }
 
     public void loginSucceeded(String key) {
-        attemptsCache.invalidate(key);
+        cachedAttempts.invalidate(key);
     }
 
     public void loginFailed(String key) {
-        int attempts;
+        int attemptCounter;
         try {
-            attempts = attemptsCache.get(key);
+            attemptCounter = cachedAttempts.get(key);
         } catch (ExecutionException e) {
-            attempts = 0;
+            attemptCounter = 0;
         }
-        attempts++;
-        attemptsCache.put(key, attempts);
+        attemptCounter++;
+        cachedAttempts.put(key, attemptCounter);
     }
 
-    public boolean isBLocked(String key) {
+    public boolean checkIfIPBlocked(String key) {
         try {
-            return attemptsCache.get(key) >= maxAttempts;
+            return cachedAttempts.get(key) >= attemptsBeforeBlock;
         } catch (ExecutionException e) {
             return false;
         }

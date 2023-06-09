@@ -24,6 +24,7 @@ import com.kj.clinic.services.dto.SignUpForm;
 import com.kj.clinic.services.dto.patients.PatientsDTOCreate;
 import com.kj.clinic.services.service.patients.PatientsServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -42,12 +43,23 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuthUIController {
 
-    private final AuthService service;
-    private final IllnessesRepo illnessesRepo;
-    private final PatientsServiceImpl patientsService;
-    private final UserRepository userRepository;
-    private final AuthenticationManager authenticationManager;
-    private final LoginAttemptService loginAttemptService;
+    @Autowired
+    AuthService service;
+
+    @Autowired
+    IllnessesRepo illnessesRepo;
+
+    @Autowired
+    PatientsServiceImpl patientsService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    LoginAttemptService loginAttemptService;
 
 
     @GetMapping("/signUp")
@@ -138,7 +150,7 @@ public class AuthUIController {
                         @RequestParam(required = false) String paramUsername,
                         final RedirectAttributes redirectAttributes){
 
-        if (loginAttemptService.isBLocked(GetClientIP.getClientIP(servletRequest))) {
+        if (loginAttemptService.checkIfIPBlocked(GetClientIP.getClientIP(servletRequest))) {
             return "account/logIn/log-in-ip-blocked";
         } else {
             if (requestWrapper.isUserInRole("ROLE_USER") || requestWrapper.isUserInRole("ROLE_ADMIN")) {
@@ -201,7 +213,6 @@ public class AuthUIController {
                 return "redirect:/logIn?authsuccess=false";
             }
         }
-
     }
 
     @GetMapping("/logOut")
@@ -238,7 +249,7 @@ public class AuthUIController {
                         HttpServletRequest servletRequest,
                         @RequestParam(required = false) String authsuccess){
 
-        if (loginAttemptService.isBLocked(GetClientIP.getClientIP(servletRequest))) {
+        if (loginAttemptService.checkIfIPBlocked(GetClientIP.getClientIP(servletRequest))) {
             return "x-database/logIn/db-log-in-ip-blocked";
         } else {
             if (requestWrapper.isUserInRole("ROLE_USER")) {

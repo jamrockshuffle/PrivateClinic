@@ -11,6 +11,7 @@ import com.kj.clinic.security.model.User;
 import com.kj.clinic.security.repository.RoleRepository;
 import com.kj.clinic.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,19 +25,29 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
-    private final RoleRepository roleRepository;
-    private final PasswordEncoder encoder;
-    private final JwtUtils jwtUtils;
-    private final AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
-    private final PatientsRepo patientsRepo;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
+
+    @Autowired
+    JwtUtils jwtUtils;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PatientsRepo patientsRepo;
 
     public LoginResponse authenticateRequest(LoginRequest request) {
-        var auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
-        );
+        var auth = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(auth);
         var jwt = jwtUtils.generateJwtToken(auth);
         var details = (UserDetailsImpl) auth.getPrincipal();
@@ -44,11 +55,12 @@ public class AuthService {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
 
-        return LoginResponse.builder()
-                .jwt(jwt)
-                .username(details.getUsername())
-                .roles(roles)
-                .build();
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setJwt(jwt);
+        loginResponse.setUsername(details.getUsername());
+        loginResponse.setRoles(roles);
+
+        return loginResponse;
     }
 
     public boolean checkValidity(LoginRequest request) {
@@ -91,11 +103,10 @@ public class AuthService {
                 .stream()
                 .mapToInt(el -> Integer.parseInt(el.getId())).max().orElse(0) + 1);
 
-        var user = User.builder()
-                .id(id)
-                .username(request.getUsername())
-                .password(encoder.encode(request.getPassword()))
-                .roleIds(mapRolesNoLogin(request)).build();
+        User user = new User(id,
+                request.getUsername(),
+                encoder.encode(request.getPassword()),
+                mapRolesNoLogin(request));
 
         userRepository.save(user);
 

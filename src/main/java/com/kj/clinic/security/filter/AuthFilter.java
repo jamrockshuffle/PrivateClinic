@@ -4,6 +4,7 @@ import com.kj.clinic.security.JwtUtils;
 import com.kj.clinic.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,13 +23,14 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
 @Slf4j
 public class AuthFilter extends OncePerRequestFilter {
 
-    private final JwtUtils jwtUtils;
+    @Autowired
+    JwtUtils jwtUtils;
 
-    private final UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

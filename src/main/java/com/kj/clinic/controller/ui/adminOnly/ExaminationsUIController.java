@@ -75,6 +75,7 @@ public class ExaminationsUIController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping("/delete/{id}")
     public String delete(Model model, @PathVariable String id){
 
@@ -107,24 +108,9 @@ public class ExaminationsUIController {
 
         model.addAttribute("examination", examinationFormDB);
 
-        //List<Qualification> qualifications = new ArrayList<>(qualificationService.findAll());
         List<Personnel> doctors = new ArrayList<>(personnelService.findAll());
         List<QualificationPrices> services = new ArrayList<>(qualificationPricesService.findAll());
 
-        /*List<String> qualifications = qualificationService.findAll()
-                .stream()
-                .map(Qualification::getName)
-                .collect(Collectors.toList());
-
-        List<String> doctors = personnelService.findAll()
-                .stream()
-                .map(Personnel::getName)
-                .collect(Collectors.toList());
-
-        List<String> services = qualificationPricesService.findAll()
-                .stream()
-                .map(QualificationPrices::getName)
-                .collect(Collectors.toList());*/
 
         model.addAttribute("doctors", doctors);
         model.addAttribute("services", services);
