@@ -34,7 +34,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
     <a class="navbar-brand name-font" href="/database/main"><img class="rounded-lg-3" src="/assets/logo-dark.png" alt="" width="50px" height="50px"></a>
-    <a class="navbar-brand name-font" href="/database/main">SOLUS DATABASE</a>
+    <a class="navbar-brand name-font" href="/database/main">SOLUS DATABASE &bullet; Лікарі</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

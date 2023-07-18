@@ -38,17 +38,8 @@
                             <input type="text" class="form-control" name="lastName" id="lastName" disabled placeholder="" value="${examination.lastName}" required>
                         </div>
 
-                        <#--<div class="col-12">
-                            <label for="service" class="form-label">Напрямок</label>
-                            <@spring.formSingleSelect "examination.qualification", qualifications, "class='form-select' onmouseout='test()'"/>
-                            <div class="invalid-feedback">
-                                Будь ласка, виберіть напрямок
-                            </div>
-                        </div>
--->
                         <div class="col-12">
                             <label for="qualification" class="form-label">Напрямок</label>
-                            <#--<@spring.formSingleSelect "examination.qualification", qualifications, "class='form-select' onmouseout='test()'"/>-->
                             <select id="qualification" name="qualification" class="form-select" onchange="fill(this);" required>
                                 <option selected disabled value="">...</option>
                             </select>
