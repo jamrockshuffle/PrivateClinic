@@ -39,4 +39,18 @@ public class AssetsController {
         return new ResponseEntity<>(image, headers, HttpStatus.OK);
     }
 
+    @GetMapping("/diagnosis/{fileName}")
+    @ResponseBody
+    public ResponseEntity<byte[]> getMedicalImage(@PathVariable String fileName) throws IOException {
+
+        File imgPath = new File("src\\main\\java\\com\\kj\\clinic\\medicalImageClassifier\\images\\" + fileName);
+        byte[] image = Files.readAllBytes(imgPath.toPath());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG);
+        headers.setContentLength(image.length);
+
+        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    }
+
 }

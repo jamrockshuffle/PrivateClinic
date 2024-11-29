@@ -10,6 +10,8 @@
 
 package com.kj.clinic.controller.ui.clientSide.pages;
 
+import com.kj.clinic.medicalImageClassifier.service.ClassifierRepo;
+import com.kj.clinic.medicalImageClassifier.service.ClassifierTable;
 import com.kj.clinic.model.Examinations;
 import com.kj.clinic.model.Patients;
 import com.kj.clinic.model.Results;
@@ -36,6 +38,9 @@ public class CabinetAndPaymentUIController {
 
     @Autowired
     ResultsRepo resultsRepo;
+
+    @Autowired
+    ClassifierRepo classifierRepo;
 
     public List<Results> getResultsByUsername(String username) {
         return resultsRepo.findAll().stream()
@@ -65,6 +70,12 @@ public class CabinetAndPaymentUIController {
                 .orElse(null);
     }
 
+    public List<ClassifierTable> getDiagnosesByUsername(String username) {
+        return classifierRepo.findAll().stream()
+                .filter(item -> item.getUsername()
+                        .equals(username)).collect(Collectors.toList());
+    }
+
     @RequestMapping("/cabinet")
     public String display(Model model,
                           SecurityContextHolderAwareRequestWrapper requestWrapper){
@@ -77,6 +88,9 @@ public class CabinetAndPaymentUIController {
 
             List<Results> results = this.getResultsByUsername(requestWrapper.getUserPrincipal().getName());
             model.addAttribute("results", results);
+
+            List<ClassifierTable> diagnoses = this.getDiagnosesByUsername(requestWrapper.getUserPrincipal().getName());
+            model.addAttribute("diagnoses", diagnoses);
 
             Patients patient = this.getPatientByUsername(requestWrapper.getUserPrincipal().getName());
             model.addAttribute("patient", patient);

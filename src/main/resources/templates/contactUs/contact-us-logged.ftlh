@@ -69,6 +69,8 @@
                 </ul>
 
                 <form class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-dark my-2 my-sm-2" href="/classifier">Онлайн-діагноз</a>
+                    &nbsp;
                     <a class="btn dangerCustom my-2 my-sm-2" href="/online-zapys">Онлайн-запис</a>
                     &nbsp;&nbsp;&nbsp;
                     <ul class="navbar-nav mr-auto">

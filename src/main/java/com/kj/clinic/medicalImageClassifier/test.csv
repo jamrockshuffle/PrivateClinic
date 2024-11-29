@@ -1,0 +1,5 @@
+,Filename,Label
+0,src/main/java/com/kj/clinic/medicalImageClassifier/images/forClassifier/COVID19(461).jpg,COVID19
+1,src/main/java/com/kj/clinic/medicalImageClassifier/images/forClassifier/IM-0009-0001.jpeg,NORMAL
+2,src/main/java/com/kj/clinic/medicalImageClassifier/images/forClassifier/Tuberculosis-661.png,TUBERCULOSIS
+3,src/main/java/com/kj/clinic/medicalImageClassifier/images/forClassifier/person1_virus_7.jpeg,PNEUMONIA

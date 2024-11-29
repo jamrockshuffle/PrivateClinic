@@ -131,7 +131,7 @@ public class AuthUIController {
 
             LoginResponse response = service.authenticateRequest(loginRequest);
 
-            //secure httponly samesite=strict
+            // secure httponly samesite=strict
             // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
             Cookie cookie = new Cookie("tkn", response.getJwt());
@@ -191,7 +191,7 @@ public class AuthUIController {
             if (service.checkValidity(request)) {
                 LoginResponse response = service.authenticateRequest(request);
 
-                //secure httponly samesite=strict
+                // secure httponly samesite=strict
                 // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
 
                 if (rememberMe != null) {
@@ -224,8 +224,8 @@ public class AuthUIController {
 
         response.addCookie(cookie);
 
-        //String referer = request.getHeader("Referer");
-        //return "redirect:" + referer;
+        // String referer = request.getHeader("Referer");
+        // return "redirect:" + referer;
 
         return "goBack/goBackByOne";
     }
@@ -280,7 +280,7 @@ public class AuthUIController {
         if (service.checkValidity(request)) {
             LoginResponse response = service.authenticateRequest(request);
 
-            //secure httponly samesite=strict
+            // secure httponly samesite=strict
             // servletResponse.addHeader("Set-Cookie", "access-token=" + response.getJwt() + "; Secure; HttpOnly");
             Cookie cookie = new Cookie("tkn", response.getJwt());
             cookie.setMaxAge(3600);
@@ -304,8 +304,8 @@ public class AuthUIController {
 
         response.addCookie(cookie);
 
-        //String referer = request.getHeader("Referer");
-        //return "redirect:" + referer;
+        // String referer = request.getHeader("Referer");
+        // return "redirect:" + referer;
 
         return "goBack/goBackByOne";
     }

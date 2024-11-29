@@ -72,6 +72,8 @@
 
                 <span class="name-font nav-item active nav-link" style="color: white; padding-right: 50px">Гаряча лінія: +38 (095)-000-00-00</span>
                 <form class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-dark my-2 my-sm-2" href="/classifier">Онлайн-діагноз</a>
+                    &nbsp;
                     <a class="btn dangerCustom my-2 my-sm-2" href="/online-zapys">Онлайн-запис</a>
                     &nbsp;&nbsp;&nbsp;
                     <a href="/logIn" class="btn btn-info my-2 my-sm-0 btn-lg">Увійти</a>

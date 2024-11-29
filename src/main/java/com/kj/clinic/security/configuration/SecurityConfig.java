@@ -84,7 +84,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/database/*/find/all",
                 "/database/*/create",
                 "/database/*/update/*",
-                "/database/*/delete/*").permitAll()
+                "/database/*/delete/*",
+                        "/classifier",
+                        "/deleteDiagnosis").permitAll()
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);

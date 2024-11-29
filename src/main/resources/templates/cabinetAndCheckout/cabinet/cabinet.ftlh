@@ -114,6 +114,8 @@
 
                 <span class="name-font nav-item active nav-link" style="color: white; padding-right: 50px">Гаряча лінія: +38 (095)-000-00-00</span>
                 <form class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-dark my-2 my-sm-2" href="/classifier">Онлайн-діагноз</a>
+                    &nbsp;
                     <a class="btn dangerCustom my-2 my-sm-2" href="/online-zapys">Онлайн-запис</a>
                     &nbsp;&nbsp;&nbsp;
                     <ul class="navbar-nav mr-auto">
@@ -169,6 +171,8 @@
                         <input type="button" id="showExaminations" value="Обстеження" class="btn dangerCustom my-2 my-sm-2 ">
                         &nbsp;&nbsp;
                         <input type="button" id="showResults" value="Результати" class="btn btn-info my-2 my-sm-2 ">
+                        &nbsp;&nbsp;
+                        <input type="button" id="showDiagnoses" value="Попередні діагнози" class="btn btn-info my-2 my-sm-2 ">
                     </div>
 
                     <div class="col-12" id="examinations">
@@ -230,6 +234,32 @@
                             </table>
                     </div>
 
+                    <div class="col-12" style="display: none;" id="diagnoses">
+                        <table class="table table-hover" >
+                            <thead class="thead-info">
+                            <tr>
+                                <th scope="col">Знімок</th>
+                                <th scope="col">Класифіковано як</th>
+                                <th scope="col">Діагноз</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <#list diagnoses as diagnosis>
+                                <tr>
+                                    <td><img src="/diagnosis/${diagnosis.filename}" width="150px" height="150px"></td>
+                                    <td>${diagnosis.label}</td>
+                                    <td>${diagnosis.diagnosis}</td>
+                                    <td><a href="/deleteDiagnosis/${diagnosis.filename}" class="btn dangerCustom my-2 my-sm-2 ">
+                                            Видалити знімок?
+                                        </a></td>
+                                </tr>
+                            </#list>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </main>
@@ -240,24 +270,40 @@
 <script>
     var examinations = document.getElementById("examinations");
     var results = document.getElementById("results");
+    var diagnoses = document.getElementById("diagnoses");
 
     var showExaminations = document.getElementById("showExaminations");
     var showResults = document.getElementById("showResults");
+    var showDiagnoses = document.getElementById("showDiagnoses");
 
     showExaminations.onclick = function () {
         examinations.style.display = "table";
         results.style.display = "none";
+        diagnoses.style.display = "none";
 
         showResults.className = "btn btn-info my-2 my-sm-2 ";
+        showDiagnoses.className = "btn btn-info my-2 my-sm-2 ";
         showExaminations.className = "btn dangerCustom my-2 my-sm-2 ";
-
     }
+
     showResults.onclick = function () {
         examinations.style.display = "none";
+        diagnoses.style.display = "none";
         results.style.display = "table";
 
         showExaminations.className = "btn btn-info my-2 my-sm-2 ";
+        showDiagnoses.className = "btn btn-info my-2 my-sm-2 ";
         showResults.className = "btn dangerCustom my-2 my-sm-2 ";
+    }
+
+    showDiagnoses.onclick = function () {
+        diagnoses.style.display = "table";
+        results.style.display = "none";
+        examinations.style.display = "none";
+
+        showResults.className = "btn btn-info my-2 my-sm-2 ";
+        showExaminations.className = "btn btn-info my-2 my-sm-2 ";
+        showDiagnoses.className = "btn dangerCustom my-2 my-sm-2 ";
     }
 
 </script>
